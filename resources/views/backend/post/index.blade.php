@@ -32,7 +32,7 @@
                                     </td>
                                     <td>
                                         @if($post->image_path)
-                                            <img src="{{ asset($post->image_path) }}" alt="{{ $post->slug }}" width="200" height="150">
+                                            <img src="{{ $post->image_path }}" alt="{{ $post->slug }}" width="150" height="100" class="img-thumbnail">
                                         @endif
                                     </td>
                                     <td>

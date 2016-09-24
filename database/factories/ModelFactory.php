@@ -22,4 +22,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+    return [
+        'category_id'   => \App\Category::inRandomOrder()->first()->id,
+        'user_id'       => \App\User::inRandomOrder()->first()->id,
+        'title'         => $faker->sentence(),
+        'body'          => $faker->paragraph(2),
+        'image_path'    => 'http://loremflickr.com/400/300?random='.rand(1, 100),
+    ];
+});
+
 

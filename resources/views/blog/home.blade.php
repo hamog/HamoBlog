@@ -21,7 +21,7 @@
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     <h1><a href="{{ route('blog.post', [$post->slug]) }}">{{ $post->title }}</a></h1>
                     <p>{{ str_limit($post->body, 30) }}</p>
-                    <p>Posted by {{ $post->user->name }} On {{ $post->created_at->format('%F %d , %Y') }}</p>
+                    <p>Posted by {{ $post->user->name }} On {{ $post->created_at->format('F d , Y') }}</p>
                     <ul class="tags">
                         @foreach($post->tags as $tag)
                             <li><a href="{{ url("posts/tag/{$tag->id}") }}">#{{ $tag->name }}</a></li>
@@ -29,6 +29,7 @@
                     </ul>
                 </div>
             @endforeach
+            {!! $posts->links() !!}
         </div>
     @endforeach
 @endsection

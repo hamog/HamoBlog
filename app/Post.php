@@ -24,23 +24,12 @@ class Post extends Model
     }
 
     /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title', 'body', 'image_path',
+        'title', 'body', 'image_path', 'category_id', 'user_id',
     ];
 
     /**
@@ -88,17 +77,6 @@ class Post extends Model
     }
 
     /**
-     * Get the public post image path.
-     *
-     * @param string $path
-     * @return string
-     */
-    public function getImagePathAttribute($path)
-    {
-        return str_replace('public', 'storage', $path);
-    }
-
-    /**
      * Scope a query to only include visible posts.
      *
      * @param $query
@@ -107,5 +85,17 @@ class Post extends Model
     public function scopeVisible($query)
     {
         return $query->where('visible', 1);
+    }
+
+    /**
+     * Scope a query to get a post on based slug.
+     *
+     * @param $query
+     * @param string $slug
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSlug($query, $slug)
+    {
+        return $query->where('slug', $slug);
     }
 }

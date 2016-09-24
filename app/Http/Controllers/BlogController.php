@@ -62,11 +62,14 @@ class BlogController extends Controller
     /**
      * Showing blog post.
      *
-     * @param Post $post
-     * @return response
+     * @param string $slug
+     * @return response view
      */
-    public function showPost(Post $post)
+    public function showPost($slug)
     {
+        $post = Cache::remember('post', 60*24, function () use($slug) {
+            return Post::slug($slug)->first();
+        });
         return view('blog.post')->with('post', $post);
     }
 }
