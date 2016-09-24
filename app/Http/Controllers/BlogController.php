@@ -58,4 +58,15 @@ class BlogController extends Controller
             return back()->with('error', 'Failed! Your message mail sending failed.');
         }
     }
+
+    /**
+     * Showing blog post.
+     *
+     * @param Post $post
+     * @return response
+     */
+    public function showPost(Post $post)
+    {
+        return view('blog.post')->with('post', $post);
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.4 on 2016-09-23.
+ * Generated for Laravel 5.3.10 on 2016-09-24.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -192,6 +192,16 @@ namespace {
         }
         
         /**
+         * Get the path to the resources directory.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function resourcePath(){
+            return \Illuminate\Foundation\Application::resourcePath();
+        }
+        
+        /**
          * Get the path to the environment file directory.
          *
          * @return string 
@@ -246,7 +256,6 @@ namespace {
         /**
          * Get or check the current application environment.
          *
-         * @param mixed
          * @return string|bool 
          * @static 
          */
@@ -936,6 +945,19 @@ namespace {
         }
         
         /**
+         * Get a closure to resolve the given type from the container.
+         *
+         * @param string $abstract
+         * @param array $defaults
+         * @return \Closure 
+         * @static 
+         */
+        public static function factory($abstract, $defaults = array()){
+            //Method inherited from \Illuminate\Container\Container            
+            return \Illuminate\Foundation\Application::factory($abstract, $defaults);
+        }
+        
+        /**
          * Instantiate a concrete instance of the given type.
          *
          * @param string $concrete
@@ -985,6 +1007,18 @@ namespace {
         public static function isShared($abstract){
             //Method inherited from \Illuminate\Container\Container            
             return \Illuminate\Foundation\Application::isShared($abstract);
+        }
+        
+        /**
+         * Get the alias for an abstract if available.
+         *
+         * @param string $abstract
+         * @return string 
+         * @static 
+         */
+        public static function getAlias($abstract){
+            //Method inherited from \Illuminate\Container\Container            
+            return \Illuminate\Foundation\Application::getAlias($abstract);
         }
         
         /**
@@ -2498,7 +2532,6 @@ namespace {
         /**
          * Queue a cookie to send with the next response.
          *
-         * @param mixed
          * @return void 
          * @static 
          */
@@ -3736,11 +3769,12 @@ namespace {
          *
          * @param bool $value
          * @param \Closure $callback
+         * @param \Closure $default
          * @return $this 
          * @static 
          */
-        public static function when($value, $callback){
-            return \Illuminate\Database\Eloquent\Builder::when($value, $callback);
+        public static function when($value, $callback, $default = null){
+            return \Illuminate\Database\Eloquent\Builder::when($value, $callback, $default);
         }
         
         /**
@@ -3802,13 +3836,13 @@ namespace {
          * Add a relationship count / exists condition to the query with where clauses.
          *
          * @param string $relation
-         * @param \Closure $callback
+         * @param \Closure|null $callback
          * @param string $operator
          * @param int $count
          * @return \Illuminate\Database\Eloquent\Builder|static 
          * @static 
          */
-        public static function whereHas($relation, $callback, $operator = '>=', $count = 1){
+        public static function whereHas($relation, $callback = null, $operator = '>=', $count = 1){
             return \Illuminate\Database\Eloquent\Builder::whereHas($relation, $callback, $operator, $count);
         }
         
@@ -5539,6 +5573,17 @@ namespace {
         }
         
         /**
+         * Determine if the given path is readable.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */
+        public static function isReadable($path){
+            return \Illuminate\Filesystem\Filesystem::isReadable($path);
+        }
+        
+        /**
          * Determine if the given path is writable.
          *
          * @param string $path
@@ -6622,9 +6667,9 @@ namespace {
         }
         
         /**
-         * Get the default channel driver names.
+         * Get the default channel driver name.
          *
-         * @return array 
+         * @return string 
          * @static 
          */
         public static function getDefaultDriver(){
@@ -6632,9 +6677,9 @@ namespace {
         }
         
         /**
-         * Get the default channel driver names.
+         * Get the default channel driver name.
          *
-         * @return array 
+         * @return string 
          * @static 
          */
         public static function deliversVia(){
@@ -6642,14 +6687,14 @@ namespace {
         }
         
         /**
-         * Set the default channel driver names.
+         * Set the default channel driver name.
          *
-         * @param array|string $channels
+         * @param string $channel
          * @return void 
          * @static 
          */
-        public static function deliverVia($channels){
-            \Illuminate\Notifications\ChannelManager::deliverVia($channels);
+        public static function deliverVia($channel){
+            \Illuminate\Notifications\ChannelManager::deliverVia($channel);
         }
         
         /**
@@ -7280,7 +7325,6 @@ namespace {
         /**
          * Determine if the current request URI matches a pattern.
          *
-         * @param mixed  string
          * @return bool 
          * @static 
          */
@@ -7291,7 +7335,6 @@ namespace {
         /**
          * Determine if the current request URL and query string matches a pattern.
          *
-         * @param mixed  string
          * @return bool 
          * @static 
          */
@@ -8851,7 +8894,7 @@ namespace {
         /**
          * Return a new JSON response from the application.
          *
-         * @param string|array $data
+         * @param mixed $data
          * @param int $status
          * @param array $headers
          * @param int $options
@@ -8866,7 +8909,7 @@ namespace {
          * Return a new JSONP response from the application.
          *
          * @param string $callback
-         * @param string|array $data
+         * @param mixed $data
          * @param int $status
          * @param array $headers
          * @param int $options
@@ -9497,9 +9540,8 @@ namespace {
         }
         
         /**
-         * Alias for the "currentRouteName" method.
+         * Alias for the "currentRouteNamed" method.
          *
-         * @param mixed  string
          * @return bool 
          * @static 
          */
@@ -9531,7 +9573,6 @@ namespace {
         /**
          * Alias for the "currentRouteUses" method.
          *
-         * @param mixed  string
          * @return bool 
          * @static 
          */
@@ -10836,7 +10877,7 @@ namespace {
         }
         
         /**
-         * Generate a URL to an application asset.
+         * Generate the URL to an application asset.
          *
          * @param string $path
          * @param bool|null $secure
@@ -10848,7 +10889,7 @@ namespace {
         }
         
         /**
-         * Generate a URL to an asset from a custom root domain such as CDN, etc.
+         * Generate the URL to an asset from a custom root domain such as CDN, etc.
          *
          * @param string $root
          * @param string $path
@@ -10861,7 +10902,7 @@ namespace {
         }
         
         /**
-         * Generate a URL to a secure asset.
+         * Generate the URL to a secure asset.
          *
          * @param string $path
          * @return string 
@@ -11454,7 +11495,7 @@ namespace {
         /**
          * Add new loop to the stack.
          *
-         * @param array|\Countable $data
+         * @param \Countable|array $data
          * @return void 
          * @static 
          */
@@ -11743,10 +11784,21 @@ namespace {
          * Adds an exception to be profiled in the debug bar
          *
          * @param \Exception $e
+         * @deprecated in favor of addThrowable
          * @static 
          */
         public static function addException($e){
             return \Barryvdh\Debugbar\LaravelDebugbar::addException($e);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @static 
+         */
+        public static function addThrowable($e){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addThrowable($e);
         }
         
         /**
@@ -13202,6 +13254,92 @@ namespace {
          */
         public static function time(){
             return \Morilog\Jalali\jDate::time();
+        }
+        
+    }
+
+
+    class Socialite extends \Laravel\Socialite\Facades\Socialite{
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function with($driver){
+            return \Laravel\Socialite\SocialiteManager::with($driver);
+        }
+        
+        /**
+         * Build an OAuth 2 provider instance.
+         *
+         * @param string $provider
+         * @param array $config
+         * @return \Laravel\Socialite\Two\AbstractProvider 
+         * @static 
+         */
+        public static function buildProvider($provider, $config){
+            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
+        }
+        
+        /**
+         * Format the server configuration.
+         *
+         * @param array $config
+         * @return array 
+         * @static 
+         */
+        public static function formatConfig($config){
+            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
+        }
+        
+        /**
+         * Get the default driver name.
+         *
+         * @throws \InvalidArgumentException
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function driver($driver = null){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDrivers(){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::getDrivers();
         }
         
     }

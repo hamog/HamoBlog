@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tehran',
 
     /*
     |--------------------------------------------------------------------------
@@ -173,6 +173,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Morilog\Jalali\JalaliServiceProvider::class,
+        PrettyRoutes\ServiceProvider::class,
 
         /*
          * Application Service Providers...

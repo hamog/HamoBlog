@@ -51,6 +51,6 @@ class User extends Authenticatable
      */
     public function isSuperAdmin()
     {
-        return $this->attributes['is_admin'];
+        return $this->is_admin;
     }
 }

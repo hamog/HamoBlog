@@ -30,6 +30,7 @@ Route::get('/', 'BlogController@home')->name('home');
 Route::get('/about-me', 'BlogController@about')->name('about');
 Route::get('/contact-me', 'BlogController@contact')->name('contact');
 Route::post('/contact-me', 'BlogController@sendContact')->name('send.contact');
+Route::get('/blog/{slug}', 'BlogController@showPost')->name('blog.post');
 
 //Backend routes
 Route::group(['middleware' => 'auth'], function () {
