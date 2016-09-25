@@ -19,9 +19,10 @@ class BlogController extends Controller
      */
     public function home()
     {
-        $posts = Cache::remember('posts', 60, function () {
-            return Post::with('user', 'tags')->visible()->paginate(10);
-        });
+//        $posts = Cache::remember('posts', 60, function () {
+//            return Post::visible()->latest()->paginate(9);
+//        });
+        $posts = Post::visible()->latest()->paginate(9);
         return view('blog.home')->with('posts', $posts);
     }
 
@@ -67,9 +68,7 @@ class BlogController extends Controller
      */
     public function showPost($slug)
     {
-        $post = Cache::remember('post', 60*24, function () use($slug) {
-            return Post::slug($slug)->first();
-        });
+        $post = Post::slug($slug)->first();
         return view('blog.post')->with('post', $post);
     }
 }

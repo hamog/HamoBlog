@@ -16,7 +16,8 @@
         "bosnadev/repositories": " 0.*",
         "intervention/image": "^2.3",
         "laravel/socialite": "^2.0",
-        "garygreen/pretty-routes": "^0.0.1"
+        "garygreen/pretty-routes": "^0.0.1",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
