@@ -99,7 +99,7 @@ class RegisterController extends Controller
         $authUser = $this->findOrCreateUser($user);
 
         Auth::login($authUser, true);
-
+        event('UserLoggedInWithSocial');
         return redirect()->intended('dashboard');
     }
 

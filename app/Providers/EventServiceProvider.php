@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -27,6 +28,10 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen('UserLoggedInWithSocial', function () {
+            $dateTime = Carbon::now()->format('d F Y, H:i:s');
+            $userName = auth()->user()->name;
+            \Log::info("The user {$userName} logged in on {$dateTime} with social networks.");
+        });
     }
 }
