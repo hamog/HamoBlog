@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-social.css') }}">
 
+    <style>
+        .errors-box {
+            background-color: #FFCCBA;
+            color: #FF0000;
+            padding: 15px;
+            border-radius: 20px;
+        }
+    </style>
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -60,6 +69,8 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('user.profile') }}">Profile</a></li>
+                                <li><a href="{{ route('user.password') }}">Change Password</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();

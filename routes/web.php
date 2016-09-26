@@ -39,9 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('post', 'PostController');
     Route::resource('tag', 'TagController', ['only' => ['index', 'edit', 'update', 'destroy']]);
     //user routes
-    Route::get('user/profile', 'UserController@showProfile')->name('user.show');
+    Route::get('user/profile', 'UserController@showProfile')->name('user.profile');
     Route::patch('user/{user}/update', 'UserController@updateProfile')->name('user.update');
-    Route::get('user/password', 'UserController@showPassword')->name('user.password');
+    Route::get('user/password', 'UserController@showPasswordForm')->name('user.password');
     Route::put('user/{user}/password/update', 'UserController@updatePassword')->name('user.password.update');
     Route::get('post/visibility', 'PostController@updateVisibility')->name('post.visible');
 });
