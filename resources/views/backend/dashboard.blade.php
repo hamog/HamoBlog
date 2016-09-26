@@ -27,7 +27,7 @@
                         <div class="panel-body">
                             <p>
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <a href="#">Users Lists</a>
+                                <a href="{{ route('user.lists') }}">Users Lists</a>
                                 <span class="badge pull-right">{{ $usersCount }}</span>
                             </p>
                         </div>

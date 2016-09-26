@@ -65,4 +65,30 @@ class UserController extends Controller
         $user->save();
         return back()->with('success', 'Password Changed.');
     }
+
+    /**
+     * Showing all users of blog.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function allUsers()
+    {
+        if (!auth()->user()->isSuperAdmin()) {
+            abort(403);
+        }
+        $users = User::paginate(10);
+        return view('backend.user.lists', compact('users'));
+    }
+
+    /**
+     * Remove user.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return back()->with('success', 'User Removed');
+    }
 }
