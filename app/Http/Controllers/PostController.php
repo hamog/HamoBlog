@@ -7,7 +7,7 @@ use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
-use Storage;
+use Illuminate\Contracts\Filesystem\Filesystem as Storage;
 
 class PostController extends Controller
 {
@@ -117,13 +117,15 @@ class PostController extends Controller
     /**
      * Remove the specified post from database.
      *
-     * @param Post $post
+     * @param \App\Post $post
+     * @param Storage $storage
      * @return \Illuminate\Http\Response
-     * @internal param int $id
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, Storage $storage)
     {
-        Storage::delete($this->getImagePath($post->image_path));
+        if ($storage->exists($post->image_path)) {
+            $storage->delete($post->image_path);
+        }
         $post->delete();
         return back()->with('success', 'Post Removed!');
     }
@@ -146,17 +148,6 @@ class PostController extends Controller
     private function getTags()
     {
         return Tag::pluck('name', 'id');
-    }
-
-    /**
-     * Get image path
-     *
-     * @param $publicPath
-     * @return string
-     */
-    private function getImagePath($publicPath)
-    {
-        return str_replace('storage', 'public', $publicPath);
     }
 
     /**
