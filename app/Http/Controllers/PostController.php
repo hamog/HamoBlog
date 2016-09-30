@@ -158,9 +158,7 @@ class PostController extends Controller
      */
     public function updateVisibility(Request $request)
     {
-        if (!$request->ajax()) {
-            abort(403);
-        }
+        abort_unless($request->ajax(), 403);
         $post = Post::findOrFail($request->id);
         if ($post->visible) {
             $post->visible = false;
