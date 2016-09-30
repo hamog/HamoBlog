@@ -27,7 +27,7 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class);
     }
-
+    
     /**
      * Store new tags into database
      *
