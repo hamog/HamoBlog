@@ -28,7 +28,7 @@
                                     <td><a href="{{ route('post.show', [$post->id]) }}">{{ $post->title }}</a></td>
                                     <td><a href="{{ route('category.show', [$post->category->id]) }}">{{ $post->category->name }}</a></td>
                                     <td>
-                                        <input type="checkbox" name="visible" data-id="{{ $post->id }}" onchange="updatePostVisiblity();" @if($post->visible) checked @endif>
+                                        <input type="checkbox" class="visibility" data-id="{{ $post->id }}" @if($post->visible) checked @endif @unless(auth()->user()->isSuperAdmin()) disabled @endunless>
                                     </td>
                                     <td>
                                         @if($post->image_path)
@@ -63,20 +63,26 @@
 @endsection
 
 @section('js')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
-        function updatePostVisiblity() {
-            $.ajax({
-                url: "{{ url('post/visibility') }}",
-                method: 'GET',
-                dataType: 'json',
-                data: {id: $(this).data('id')},
-                success: function (res) {
-                    console.log(res);
-                },
-                error: function (res) {
-                    console.log(res);
+        $(".visibility").change(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        }
+            $.ajax({
+                url: '{{ route('post.visible') }}',
+                type: 'PATCH',
+                dataType: 'json',
+                data: {post_id: $(this).data('id')},
+                success: function (res) {
+                    swal(res.message, "You clicked the button!", res.type);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
     </script>
 @endsection

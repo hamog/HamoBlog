@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Tag;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Filesystem\Filesystem as Storage;
 
@@ -158,15 +159,25 @@ class PostController extends Controller
      */
     public function updateVisibility(Request $request)
     {
-        abort_unless($request->ajax(), 403);
-        $post = Post::findOrFail($request->id);
+        abort_unless(($request->ajax() && auth()->user()->isSuperAdmin()), 403);
+        $post = Post::findOrFail($request->post_id);
         if ($post->visible) {
             $post->visible = false;
-        } else {
+            $data = [
+                'message' => 'Post is hidden.',
+                'type'    => 'error'
+            ];
+        }
+        else {
             $post->visible = true;
+            $post->published_at = Carbon::now();
+            $data = [
+                'message' => 'Post is published.',
+                'type'    => 'success'
+            ];
         }
         $post->save();
-        return response()->json(['success' => 'Post visibility updated.']);
+        return response()->json($data);
     }
 
 }

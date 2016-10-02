@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-social.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
 
     <style>
         .errors-box {
@@ -94,6 +95,9 @@
     @yield('content')
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="{{ asset('js/app.js') }}"> </script>
+    <script src="{{ asset('js/main.js') }}"> </script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"> </script>
+    @yield('js')
 </body>
 </html>
