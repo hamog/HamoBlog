@@ -14,8 +14,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Illuminate\Mail\Events\MessageSending' => [
-            'App\Listeners\LogSentMessage',
+        'App\Events\PostPublished' => [
+            'App\Listeners\SendPublishedNotification',
         ],
     ];
 

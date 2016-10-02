@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Events\PostPublished;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Tag;
@@ -175,6 +176,7 @@ class PostController extends Controller
                 'message' => 'Post is published.',
                 'type'    => 'success'
             ];
+            event(new PostPublished($post));
         }
         $post->save();
         return response()->json($data);
