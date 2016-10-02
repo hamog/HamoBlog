@@ -29,7 +29,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'body', 'image_path', 'category_id', 'user_id',
+        'title', 'body', 'image_path',
     ];
 
     /**
@@ -39,6 +39,15 @@ class Post extends Model
      */
     protected $casts = [
         'visible' => 'boolean',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'published_at'
     ];
 
     /**
