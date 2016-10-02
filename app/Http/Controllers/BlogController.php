@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use App\Post;
-use App\User;
-use Cache;
 use Exception;
+use Illuminate\Contracts\Cookie\QueueingFactory as Cookie;
 use Illuminate\Http\Request;
 use Log;
 use Mail;
@@ -64,11 +63,17 @@ class BlogController extends Controller
      * Showing blog post.
      *
      * @param string $slug
+     * @param Cookie $cookie
+     * @param Request $request
      * @return response view
      */
-    public function showPost($slug)
+    public function showPost($slug, Cookie $cookie, Request $request)
     {
         $post = Post::slug($slug)->first();
+        if (!$cookie->hasQueued('show_post')) {
+            $post->increment('visit');
+            $cookie->queue('show_post', true, 10);
+        }
         return view('blog.post')->with('post', $post);
     }
 }

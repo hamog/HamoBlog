@@ -7,7 +7,7 @@ use App\Notifications\PublishedPost;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendPublishedNotification
+class SendPublishedNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

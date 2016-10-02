@@ -13,6 +13,7 @@
                         <img src="{{ $post->image_path }}" alt="{{ $post->slug }}" class="img-responsive img-thumbnail" width="100" height="100">
                     @endif
                     <p>{{ str_limit($post->body, 30) }}</p>
+                    <p>{{ $post->visit }} visits</p>
                 </div>
             @endforeach
         </div>
