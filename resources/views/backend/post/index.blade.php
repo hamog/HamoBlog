@@ -42,11 +42,11 @@
                                             </button>
                                         </a>
                                         {!! Form::open([
-                                                'route' => ['post.destroy', $post->id],
-                                                'method' => 'delete',
-                                                'style' => 'display:inline'
+                                                'route'     => ['post.destroy', $post->id],
+                                                'method'    => 'delete',
+                                                'style'     => 'display:inline',
                                             ]) !!}
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">
+                                        <button type="submit" class="btn btn-danger btn-sm" id="delete-post">
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         </button>
                                         {!! Form::close() !!}
@@ -83,6 +83,25 @@
                     console.log(error);
                 }
             });
+        })
+    </script>
+    <script>
+        $("button#delete-post").click(function (event) {
+            event.preventDefault()
+            var form = $(this).parents('form');
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this post!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+                },
+                function(isConfirm) {
+                    if (isConfirm) form.submit();
+                    swal("Deleted!", "The post has been deleted.", "success");
+                });
         })
     </script>
 @endsection
