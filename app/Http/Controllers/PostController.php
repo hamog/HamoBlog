@@ -73,6 +73,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        event(new PostPublished($post));
         return view('backend.post.show')->with('post', $post);
     }
 

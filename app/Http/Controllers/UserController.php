@@ -86,7 +86,7 @@ class UserController extends Controller
      * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User $user)
+    public function destroyUser(User $user)
     {
         $user->delete();
         return back()->with('success', 'User Removed');

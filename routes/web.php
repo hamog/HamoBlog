@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('user/{user}/password/update', 'UserController@updatePassword')->name('user.password.update');
     Route::patch('post/visibility/update', 'PostController@updateVisibility')->name('post.visible');
     Route::get('user/lists', 'UserController@allUsers')->name('user.lists');
-    Route::get('user/{user}/destroy', 'UserController@destroyUser')->name('user.destroy');
+    Route::delete('user/{user}/destroy', 'UserController@destroyUser')->name('user.destroy');
 });
 
 

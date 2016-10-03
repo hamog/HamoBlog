@@ -173,6 +173,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Morilog\Jalali\JalaliServiceProvider::class,
+        NotificationChannels\Telegram\TelegramServiceProvider::class,
         PrettyRoutes\ServiceProvider::class,
 
         /*

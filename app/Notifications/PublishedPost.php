@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use NotificationChannels\Telegram\TelegramChannel;
+use NotificationChannels\Telegram\TelegramMessage;
 
 class PublishedPost extends Notification
 {
@@ -31,7 +33,7 @@ class PublishedPost extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', TelegramChannel::class];
     }
 
     /**
@@ -46,6 +48,16 @@ class PublishedPost extends Notification
                     ->line($this->post->title)
                     ->action('Go to Post', route('blog.post', [$this->post->slug]))
                     ->line('Thank you for using our application!');
+    }
+
+    public function toTelegram($notifiable)
+    {
+        $url = 'http://hamo.hol.es';
+
+        return TelegramMessage::create()
+            ->to('39294364') // Optional.
+            ->content("*HELLO!* \n The post is published.") // Markdown supported.
+            ->button('View Post', $url); // Inline Button
     }
 
     /**

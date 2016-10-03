@@ -73,6 +73,9 @@
                                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                 <li><a href="{{ route('user.profile') }}">Profile</a></li>
                                 <li><a href="{{ route('user.password') }}">Change Password</a></li>
+                                @if(auth()->user()->isSuperAdmin())
+                                    <li><a href="{{ route('user.lists') }}">Users</a></li>
+                                @endif
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
@@ -101,3 +104,5 @@
     @yield('js')
 </body>
 </html>
+
+
