@@ -15,6 +15,8 @@ class PublishedPost extends Notification
 
     protected $post;
 
+    protected $userTelegramId = '39294364';
+
     /**
      * Create a new notification instance.
      *
@@ -52,12 +54,10 @@ class PublishedPost extends Notification
 
     public function toTelegram($notifiable)
     {
-        $url = 'http://hamo.hol.es';
-
         return TelegramMessage::create()
-            ->to('39294364') // Optional.
-            ->content("*HELLO!* \n The post is published.") // Markdown supported.
-            ->button('View Post', $url); // Inline Button
+            ->to($this->userTelegramId) // Optional.
+            ->content("*HELLO!* \n The new post is published.") // Markdown supported.
+            ->button('View Post', 'http://hamo.hol.es'); // Inline Button
     }
 
     /**
@@ -72,4 +72,5 @@ class PublishedPost extends Notification
             //
         ];
     }
+
 }
