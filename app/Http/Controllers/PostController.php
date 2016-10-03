@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::latest()->with('category')->paginate(10);
         return view('backend.post.index', compact('posts'));
     }
 
@@ -73,7 +73,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        event(new PostPublished($post));
         return view('backend.post.show')->with('post', $post);
     }
 

@@ -97,6 +97,17 @@ class Post extends Model
     }
 
     /**
+     * Scope a query to only unpublished posts.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUnpublished($query)
+    {
+        return $query->where('visible', 0);
+    }
+
+    /**
      * Scope a query to get a post on based slug.
      *
      * @param $query

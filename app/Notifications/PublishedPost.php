@@ -9,13 +9,16 @@ use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class PublishedPost extends Notification
+class PublishedPost extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    /**
+     * The post instance.
+     *
+     * @var object
+     */
     protected $post;
-
-    protected $userTelegramId = '39294364';
 
     /**
      * Create a new notification instance.
@@ -55,7 +58,7 @@ class PublishedPost extends Notification
     public function toTelegram($notifiable)
     {
         return TelegramMessage::create()
-            ->to($this->userTelegramId) // Optional.
+            ->to('39294364') // Optional.
             ->content("*HELLO!* \n The new post is published.") // Markdown supported.
             ->button('View Post', 'http://hamo.hol.es'); // Inline Button
     }
