@@ -4,10 +4,11 @@ namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
-    use Sluggable;
+    use Sluggable, Searchable;
 
     /**
      * Return the sluggable configuration array for this model.

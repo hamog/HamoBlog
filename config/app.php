@@ -171,6 +171,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Morilog\Jalali\JalaliServiceProvider::class,
         NotificationChannels\Telegram\TelegramServiceProvider::class,

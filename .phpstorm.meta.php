@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2016-10-02.
+    * Generated on 2016-10-04.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -42,6 +42,7 @@ namespace PHPSTORM_META {
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
             'image' instanceof \Intervention\Image\ImageManager,
+            'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
@@ -166,6 +167,7 @@ namespace PHPSTORM_META {
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
             'image' instanceof \Intervention\Image\ImageManager,
+            'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
@@ -290,6 +292,7 @@ namespace PHPSTORM_META {
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
             'image' instanceof \Intervention\Image\ImageManager,
+            'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
@@ -414,6 +417,7 @@ namespace PHPSTORM_META {
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
             'image' instanceof \Intervention\Image\ImageManager,
+            'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
