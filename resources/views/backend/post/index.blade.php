@@ -6,7 +6,6 @@
         <div>
             <a href="{{ route('post.create') }}" class="btn btn-primary btn-lg">New Post</a>
         </div>
-        @include('partials._notifications')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             	<div class="table-responsive">

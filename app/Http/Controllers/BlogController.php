@@ -52,10 +52,12 @@ class BlogController extends Controller
         try {
             Mail::to(config('mail.from.address'))
                 ->send(new ContactMail($request));
-            return back()->with('success', 'Your message is successfully sent.');
+            alert()->success('Success', 'Your message is successfully sent.');
+            return redirect()->route('contact');
         } catch(Exception $e) {
             Log::debug('Sending Contact mail : '. $e->getMessage());
-            return back()->with('error', 'Failed! Your message mail sending failed.');
+            alert()->error('Error!', 'Your message mail sending failed.');
+            return back()->withInput();
         }
     }
 

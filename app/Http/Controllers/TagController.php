@@ -40,7 +40,8 @@ class TagController extends Controller
     {
         $tag->name = $request->name;
         $tag->save();
-        return back()->with('success', 'Tag Updated!');
+        alert()->success('Success', 'Tag Updated.');
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -52,6 +53,7 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return back()->with('success', 'Tag removed!');
+        alert()->success('Success', 'Tag Removed.');
+        return redirect()->route('tag.index');
     }
 }

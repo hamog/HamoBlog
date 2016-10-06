@@ -37,7 +37,8 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         Category::create($request->all());
-        return back()->with('success', 'Category created!');
+        alert()->success('Success', 'Category created.');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -71,7 +72,10 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $category->name = $request->name;
+        $category->save();
+        alert()->success('Category Updated.', "The category name='{$request->name}' successfully updated.");
+        return redirect()->route('category.index');
     }
 
     /**
@@ -83,6 +87,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return back()->with('success', 'Category removed!');
+        alert()->error('Woops!', 'Category is Removed.');
+        return back();
     }
 }

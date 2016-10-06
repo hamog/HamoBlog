@@ -5,7 +5,6 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             	<h1 class="page-header">Lists of all users</h1>
-                @include('partials._notifications')
                 <div class="table-responsive">
                 	<table class="table table-hover">
                 		<thead>

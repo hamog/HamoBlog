@@ -4,7 +4,6 @@
     <h1 class="page-header">Contact Me</h1>
 
     @include('partials._errors-box')
-    @include('partials._notifications')
 
     {!! Form::open(['route' => 'send.contact']) !!}
 

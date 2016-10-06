@@ -35,7 +35,8 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-        return back()->with('success', 'Profile Updated!');
+        alert()->success('Success', 'Your profile was updated.');
+        return back();
     }
 
     /**
@@ -63,7 +64,8 @@ class UserController extends Controller
         $user = auth()->user();
         $user->password = $request->password;
         $user->save();
-        return back()->with('success', 'Password Changed.');
+        alert()->success('Success', 'Your password is changed.');
+        return back();
     }
 
     /**
@@ -89,6 +91,7 @@ class UserController extends Controller
     public function destroyUser(User $user)
     {
         $user->delete();
-        return back()->with('success', 'User Removed');
+        alert()->success('Success', 'The user removed.');
+        return back();
     }
 }

@@ -62,7 +62,8 @@ class PostController extends Controller
         //Store new tags on pivot table
         $post->tags()->attach($newTagsId);
 
-        return back()->with('success', ' Post Created!');
+        alert()->success('Success', 'Post Created.');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -113,7 +114,8 @@ class PostController extends Controller
 
         $tags = $tag->storeNewTags($request->tags);
         $post->tags()->sync($tags);
-        return back()->with('success', 'Post Updated.');
+        alert()->success('Success', 'Post Updated.');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -129,7 +131,8 @@ class PostController extends Controller
             $storage->delete($post->image_path);
         }
         $post->delete();
-        return back()->with('success', 'Post Removed!');
+        //alert()->success('Success', 'Post Removed.');
+        return back();
     }
 
     /**

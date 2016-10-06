@@ -3,7 +3,6 @@
 @section('content')
     <h1 class="page-header">Create New Category</h1>
     @include('partials._errors-box')
-    @include('partials._notifications')
     {!! Form::open(['route' => 'category.store']) !!}
     @include('backend.category._form')
     {!! Form::submit('Create Category', ['class' => 'btn btn-primary']) !!}

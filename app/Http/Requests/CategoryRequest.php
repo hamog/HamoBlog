@@ -25,7 +25,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|alpha|unique:categories,name,' . $this->route('category'),
+            'name' => 'bail|required|alpha|unique:categories,name,' . $this->segment(2),
         ];
     }
 }

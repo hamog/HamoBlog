@@ -17,6 +17,9 @@
     {{-- Select2 StyleSheet--}}
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 
+    {{-- SweetAlert --}}
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.css') }}">
+
     @yield('styles')
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -87,6 +90,8 @@
 <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>
+<script src="{{ asset('js/sweetalert.min.js') }}"></script>
+@include('vendor.alerts.alerts')
 @yield('js')
 </body>
 </html>

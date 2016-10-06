@@ -3,7 +3,6 @@
 @section('content')
     <div class="container">
         <h1 class="page-header">Tag lists</h1>
-        @include('partials._notifications')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             	<div class="table-responsive">
