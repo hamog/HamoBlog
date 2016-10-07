@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\PostPublished' => [
             'App\Listeners\SendPublishedNotification',
         ],
+        'Illuminate\Auth\Events\Registered' => [
+            'App\Listeners\MailRegisteredUser',
+        ],
     ];
 
     /**
