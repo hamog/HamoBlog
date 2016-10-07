@@ -2,11 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Mail\WelcomeNewUserMail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Mail;
 
 class MailRegisteredUser implements ShouldQueue
 {
@@ -28,6 +26,7 @@ class MailRegisteredUser implements ShouldQueue
      */
     public function handle(Registered $event)
     {
-        Mail::to($event->user)->queue(new WelcomeNewUserMail($event->user));
+        //Mail::to($event->user)->queue(new WelcomeNewUserMail($event->user));
+        $event->user->notify(new WelcomeRegisteredUser($event->user));
     }
 }
