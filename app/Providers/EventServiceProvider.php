@@ -27,11 +27,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        Event::listen('UserLoggedInWithSocial', function () {
-            $dateTime = Carbon::now()->format('d F Y, H:i:s');
-            $userName = auth()->user()->name;
-            \Log::info("The user {$userName} logged in on {$dateTime} with social networks.");
-        });
+        //
     }
 }

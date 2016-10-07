@@ -94,4 +94,5 @@ class UserController extends Controller
         alert()->success('Success', 'The user removed.');
         return back();
     }
+
 }

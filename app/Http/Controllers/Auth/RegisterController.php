@@ -33,8 +33,6 @@ class RegisterController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -65,9 +63,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'name'              => $data['name'],
+            'email'             => $data['email'],
+            'password'          => bcrypt($data['password']),
+            'confirmation_code' => str_random(30),
         ]);
     }
 
@@ -123,5 +122,28 @@ class RegisterController extends Controller
             'social_id' => $socialUser->id,
             'avatar'    => $socialUser->avatar,
         ]);
+    }
+
+    public function confirm($confirmationCode)
+    {
+        if( ! $confirmationCode)
+        {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user = User::whereConfirmationCode($confirmationCode)->first();
+
+        if ( ! $user)
+        {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user->confirmed = 1;
+        $user->confirmation_code = null;
+        $user->save();
+
+        alert()->success('Congratulations', 'You have successfully verified your account.');
+
+        return redirect()->route('login');
     }
 }
