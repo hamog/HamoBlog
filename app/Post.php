@@ -3,6 +3,7 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
@@ -52,6 +53,20 @@ class Post extends Model
     ];
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope('visible', function (Builder $builder) {
+            $builder->where('visible', 1);
+        });
+    }
+
+
+    /**
      * Get the user that owns the post.
      */
     public function user()
@@ -84,17 +99,6 @@ class Post extends Model
     public static function imageUpload($image)
     {
         return $image->storeAs('public/images', auth()->user()->id);
-    }
-
-    /**
-     * Scope a query to only include visible posts.
-     *
-     * @param $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeVisible($query)
-    {
-        return $query->where('visible', 1);
     }
 
     /**
