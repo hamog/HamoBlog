@@ -31,10 +31,7 @@ Route::get('/about-me', 'BlogController@about')->name('about');
 Route::get('/contact-me', 'BlogController@contact')->name('contact');
 Route::post('/contact-me', 'BlogController@sendContact')->name('send.contact');
 Route::get('/blog/{slug}', 'BlogController@showPost')->name('blog.post');
-Route::get('register/verify/{confirmationCode}', [
-    'as' => 'confirmation_path',
-    'uses' => 'UserController@confirm'
-]);
+Route::get('/search', 'BlogController@search')->name('search');
 
 
 //Backend routes

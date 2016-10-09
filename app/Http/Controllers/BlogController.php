@@ -66,10 +66,9 @@ class BlogController extends Controller
      *
      * @param string $slug
      * @param Cookie $cookie
-     * @param Request $request
      * @return response view
      */
-    public function showPost($slug, Cookie $cookie, Request $request)
+    public function showPost($slug, Cookie $cookie)
     {
         $post = Post::slug($slug)->first();
         if (!$cookie->hasQueued('show_post')) {
@@ -77,5 +76,21 @@ class BlogController extends Controller
             $cookie->queue('show_post', true, 10);
         }
         return view('blog.post')->with('post', $post);
+    }
+
+    public function search(Request $request)
+    {
+        // First we define the error message we are going to show if no keywords
+        // existed or if no results found.
+        $error = ['error' => 'No results found, please try with different keywords.'];
+        // Making sure the user entered a keyword.
+        if($request->has('q')) {
+            // Using the Laravel Scout syntax to search the products table.
+            $posts = Post::search($request->get('q'))->get();
+            // If there are results return them, if none, return the error message.
+            return $posts->count() ? $posts : $error;
+        }
+        // Return the error message if no keywords existed
+        return $error;
     }
 }
