@@ -39,7 +39,7 @@ Route::get('register/verify/{confirmationCode}', [
 
 //Backend routes
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+    Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard')->middleware('revalidate');
     Route::resource('category', 'CategoryController');
     Route::resource('post', 'PostController');
     Route::resource('tag', 'TagController', ['only' => ['index', 'edit', 'update', 'destroy']]);
