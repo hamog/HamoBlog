@@ -32,7 +32,7 @@ Route::get('/contact-me', 'BlogController@contact')->name('contact');
 Route::post('/contact-me', 'BlogController@sendContact')->name('send.contact');
 Route::get('/blog/{slug}', 'BlogController@showPost')->name('blog.post');
 Route::get('/search', 'BlogController@search')->name('search');
-
+Route::post('/comment/{post}/store', 'CommentController@store')->name('comment.store');
 
 //Backend routes
 Route::group(['middleware' => 'auth'], function () {
