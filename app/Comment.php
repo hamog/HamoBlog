@@ -48,19 +48,4 @@ class Comment extends Model
         return $this->belongsTo(Post::class);
     }
 
-    /**
-     * Get the comment that owns the reply comment.
-     */
-    public function comment()
-    {
-        return $this->belongsTo(Comment::class, 'parent_id');
-    }
-
-    /**
-     * Get the reply comment associated with the comment.
-     */
-    public function reply()
-    {
-        return $this->hasOne(Comment::class, 'parent_id');
-    }
 }

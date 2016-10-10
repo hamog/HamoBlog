@@ -28,6 +28,24 @@
                 <div class="panel-body">
                     {{ $comment->comment }}
                 </div>
+                <div class="panel-footer">
+                @if($comment->reply)
+                    <p class="text-info"><b>{{ $post->user->name }} :</b> {{ $comment->reply }}</p>
+                @else
+                    <h3>Reply to this Comment</h3>
+                    <div id="reply-comment">
+                        {!! Form::open(['route' => ['comment.reply', $comment->id], 'method' => 'patch']) !!}
+
+                        <div class="form-group">
+                            {!! Form::label('reply', 'Reply', ['class' => 'control-label']) !!}
+                            {!! Form::textarea('reply', null, ['class' => 'form-control']) !!}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Send</button>
+                        {!! Form::close() !!}
+                    </div>
+                @endif
+                </div>
             </div>
         @empty
             No Comments.
@@ -36,11 +54,9 @@
 
     @include('partials._errors-box')
 
-    {!! Form::open(['route' => ['comment.store', $post->id], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['comment.store', $post->id], 'method' => 'post', 'id' => 'comment-reply']) !!}
     <legend>Please enter your comment with below form:</legend>
     <p>Your email address will not be published.</p>
-
-
 
     <div class="form-group">
         {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
@@ -60,3 +76,4 @@
     <button type="submit" class="btn btn-primary">Send</button>
     {!! Form::close() !!}
 @endsection
+
