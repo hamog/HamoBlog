@@ -28,24 +28,30 @@
                 <div class="panel-body">
                     {{ $comment->comment }}
                 </div>
-                <div class="panel-footer">
+
                 @if($comment->reply)
-                    <p class="text-info"><b>{{ $post->user->name }} :</b> {{ $comment->reply }}</p>
-                @else
-                    <h3>Reply to this Comment</h3>
-                    <div id="reply-comment">
-                        {!! Form::open(['route' => ['comment.reply', $comment->id], 'method' => 'patch']) !!}
-
-                        <div class="form-group">
-                            {!! Form::label('reply', 'Reply', ['class' => 'control-label']) !!}
-                            {!! Form::textarea('reply', null, ['class' => 'form-control']) !!}
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Send</button>
-                        {!! Form::close() !!}
+                    <div class="panel-footer">
+                        <p class="text-info"><b>{{ $post->user->name }} :</b> {{ $comment->reply }}</p>
                     </div>
+                @else
+                    @can('update', $post)
+                        <div class="panel-footer">
+                            <h3>Reply to this Comment</h3>
+                            <div id="reply-comment">
+                                {!! Form::open(['route' => ['comment.reply', $comment->id], 'method' => 'patch']) !!}
+
+                                <div class="form-group">
+                                    {!! Form::label('reply', 'Reply', ['class' => 'control-label']) !!}
+                                    {!! Form::textarea('reply', null, ['class' => 'form-control']) !!}
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Send</button>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    @endcan
                 @endif
-                </div>
+
             </div>
         @empty
             No Comments.

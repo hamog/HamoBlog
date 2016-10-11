@@ -25,7 +25,7 @@
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading"><a href="/blog/@{{ post.slug }}">@{{ post.title }}</a></h4>
                     <p class="group inner list-group-item-text">@{{ post.body }}</p>
-                    <p>@{{ post.visit }} visits.</p>
+                    <p>@{{ post.visit }} visits. Published At @{{ post.published_at }}</p>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                         <img src="{{ $post->image_path }}" alt="{{ $post->slug }}" class="img-thumbnail" width="100" height="100">
                     @endif
                     <p>{{ str_limit($post->body, 30) }}</p>
-                    <p>{{ $post->visit }} visits</p>
+                    <p>{{ $post->visit }} visits. Created By {{ $post->user->name }}</p>
                 </div>
             @endforeach
         </div>
