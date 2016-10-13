@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     /**
+     * Display a listing of the comment.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $comments = Comment::withoutGlobalScope('confirmed')->with('post')->paginate();
+        return view('backend.comment.index', compact('comments'));
+    }
+    /**
      * Store comment of post.
      *
      * @param CommentRequest $request
@@ -53,5 +63,18 @@ class CommentController extends Controller
     public function confirm(Request $request)
     {
         //
+    }
+
+    /**
+     * Remove the specified comment from database.
+     *
+     * @param Comment $comment
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+        alert()->success('Comment Removed', 'The comment is permanently removed.');
+        return redirect()->route('comment.index');
     }
 }

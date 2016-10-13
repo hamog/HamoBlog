@@ -62,6 +62,20 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Comments</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                            <a href="{{ route('comment.index') }}">Comment Lists</a>
+                            <span class="badge pull-right">{{ $commentsCount }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

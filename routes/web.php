@@ -40,15 +40,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard')->middleware('revalidate');
     Route::resource('category', 'CategoryController');
     Route::resource('post', 'PostController');
+    Route::patch('post/visibility/update', 'PostController@updateVisibility')->name('post.visible');
     Route::resource('tag', 'TagController', ['only' => ['index', 'edit', 'update', 'destroy']]);
     //user routes
     Route::get('user/profile', 'UserController@showProfile')->name('user.profile');
     Route::patch('user/{user}/update', 'UserController@updateProfile')->name('user.update');
     Route::get('user/password', 'UserController@showPasswordForm')->name('user.password');
     Route::put('user/{user}/password/update', 'UserController@updatePassword')->name('user.password.update');
-    Route::patch('post/visibility/update', 'PostController@updateVisibility')->name('post.visible');
     Route::get('user/lists', 'UserController@allUsers')->name('user.lists');
     Route::delete('user/{user}/destroy', 'UserController@destroyUser')->name('user.destroy');
+    //Comment backend routes
+    Route::get('/comment', 'CommentController@index')->name('comment.index');
+    Route::delete('/comment/{comment}/destroy', 'CommentController@destroy')->name('comment.destroy');
 });
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Post;
 use App\Tag;
 use App\User;
@@ -38,11 +39,19 @@ class DashboardController extends Controller
      */
     protected $tagsCount;
 
+    /**
+     * Counting the number of comments.
+     *
+     * @var integer
+     */
+    protected $commentsCount;
+
     public function __construct(
         Category $category,
         User $user,
         Post $post,
-        Tag $tag
+        Tag $tag,
+        Comment $comment
     )
     {
         $this->catsCount = Cache::remember('catsCount', 60*24, function () use($category) {
@@ -57,6 +66,9 @@ class DashboardController extends Controller
         $this->tagsCount = Cache::remember('tagsCount', 60*24, function () use($tag) {
             return $tag->count();
         });
+        $this->commentsCount = Cache::remember('commentsCount', 60*24, function () use($comment) {
+            return $comment->count();
+        });
     }
     /**
      * Showing dashboard panel
@@ -68,6 +80,7 @@ class DashboardController extends Controller
             'usersCount'    => $this->usersCount,
             'postsCount'    => $this->postsCount,
             'tagsCount'     => $this->tagsCount,
+            'commentsCount' => $this->commentsCount,
         ]);
     }
 }

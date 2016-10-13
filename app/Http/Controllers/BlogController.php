@@ -21,7 +21,7 @@ class BlogController extends Controller
 //        $posts = Cache::remember('posts', 60, function () {
 //            return Post::visible()->latest()->paginate(9);
 //        });
-        $posts = Post::latest()->simplePaginate(9);
+        $posts = Post::with('user')->latest()->simplePaginate(9);
         return view('blog.home')->with('posts', $posts);
     }
 
