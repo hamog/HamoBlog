@@ -145,6 +145,12 @@ class RegisterController extends Controller
         return redirect('/');
     }
 
+    /**
+     * Verify registered user with token.
+     *
+     * @param string $token
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function verify($token)
     {
         $user = User::where('verification_token', $token)->first();
