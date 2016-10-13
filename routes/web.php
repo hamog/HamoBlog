@@ -18,6 +18,10 @@ Auth::routes();
 Route::get('auth/{social}', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/{social}/callback', 'Auth\RegisterController@handleProviderCallback');
 
+//Email verification
+Route::get('register/verify/{token}', 'Auth\RegisterController@verify')->name('register.verify');
+
+
 //Regex for route parameters
 Route::patterns([
     'category'  => '[0-9]+',
@@ -53,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/comment', 'CommentController@index')->name('comment.index');
     Route::delete('/comment/{comment}/destroy', 'CommentController@destroy')->name('comment.destroy');
 });
+
 
 
 

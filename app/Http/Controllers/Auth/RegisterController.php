@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
+use App\Mail\EmailVerification;
 use App\User;
 use Auth;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Socialite;
 use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -63,10 +66,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name'              => $data['name'],
-            'email'             => $data['email'],
-            'password'          => bcrypt($data['password']),
-            'confirmation_code' => str_random(30),
+            'name'               => $data['name'],
+            'email'              => $data['email'],
+            'password'           => bcrypt($data['password']),
+            'verification_token' => str_random(30),
         ]);
     }
 
@@ -116,34 +119,46 @@ class RegisterController extends Controller
             return $authUser;
         }
         return User::create([
-            'name'      => $socialUser->name,
-            'email'     => $socialUser->email,
-            'password'  => bcrypt($socialUser->id),
-            'social_id' => $socialUser->id,
-            'avatar'    => $socialUser->avatar,
+            'name'                  => $socialUser->name,
+            'email'                 => $socialUser->email,
+            'password'              => bcrypt($socialUser->id),
+            'social_id'             => $socialUser->id,
+            'avatar'                => $socialUser->avatar,
         ]);
     }
 
-    public function confirm($confirmationCode)
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
     {
-        if( ! $confirmationCode)
-        {
-            throw new InvalidConfirmationCodeException;
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //$this->guard()->login($user);
+        alert()->info('Info', 'Thanks for signing up! Please check your email.');
+
+        return redirect('/');
+    }
+
+    public function verify($token)
+    {
+        $user = User::where('verification_token', $token)->first();
+        if (! $user) {
+            alert()->error('Error!', 'Token invalid and verification failed.');
+            return redirect('/');
         }
-
-        $user = User::whereConfirmationCode($confirmationCode)->first();
-
-        if ( ! $user)
-        {
-            throw new InvalidConfirmationCodeException;
-        }
-
-        $user->confirmed = 1;
-        $user->confirmation_code = null;
+        //Verify user
+        $user->verified = 1;
+        $user->verification_token = null;
         $user->save();
-
-        alert()->success('Congratulations', 'You have successfully verified your account.');
-
+        //response
+        alert()->success('Success', 'You have successfully verified your account.');
         return redirect()->route('login');
     }
+
 }

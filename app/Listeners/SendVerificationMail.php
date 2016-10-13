@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Notifications\WelcomeRegisteredUser;
+use App\Notifications\SendVerificationToken;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MailRegisteredUser implements ShouldQueue
+class SendVerificationMail implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -27,7 +27,6 @@ class MailRegisteredUser implements ShouldQueue
      */
     public function handle(Registered $event)
     {
-        //Mail::to($event->user)->queue(new WelcomeNewUserMail($event->user));
-        $event->user->notify(new WelcomeRegisteredUser($event->user));
+        $event->user->notify(new SendVerificationToken($event->user));
     }
 }

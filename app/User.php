@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'social_id', 'avatar',
+        'name', 'email', 'password', 'social_id', 'avatar', 'verification_token',
     ];
 
     /**
@@ -57,5 +57,12 @@ class User extends Authenticatable
     public function isSuperAdmin()
     {
         return $this->is_admin;
+    }
+
+    public function verified()
+    {
+        $this->verified = 1;
+        $this->verification_token = null;
+        $this->save();
     }
 }
