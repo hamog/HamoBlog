@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -130,5 +131,16 @@ class Post extends Model
     public function scopeSlug($query, $slug)
     {
         return $query->where('slug', $slug);
+    }
+
+    /**
+     * Get formatted post publish date with Carbon.
+     *
+     * @param string $date
+     * @return string
+     */
+    public function getPublishedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('F d, Y \\a\\t H:i');
     }
 }

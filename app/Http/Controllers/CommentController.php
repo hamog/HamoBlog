@@ -28,7 +28,10 @@ class CommentController extends Controller
      */
     public function store(CommentRequest $request, Post $post)
     {
-        $post->comments()->create($request->all());
+        $comment = $post->comments()->create($request->all());
+        $comment->ip = $request->ip();
+        $comment->user_agent = $request->header('User-Agent');
+        $comment->save();
 
         alert()->success('Thank you.', 'Your comment stored and after confirm will display.');
         return back();

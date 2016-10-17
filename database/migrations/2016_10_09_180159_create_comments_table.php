@@ -21,6 +21,8 @@ class CreateCommentsTable extends Migration
             $table->text('comment');
             $table->text('reply')->nullable();
             $table->boolean('confirmed')->default(0);
+            $table->string('ip', 30);
+            $table->string('user_agent');
             $table->timestamps();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
