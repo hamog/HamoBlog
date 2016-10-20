@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use App\Post;
+use App\Repositories\PostRepository;
 use Exception;
 use Illuminate\Contracts\Cookie\QueueingFactory as Cookie;
 use Illuminate\Http\Request;
@@ -15,13 +16,15 @@ class BlogController extends Controller
 {
     /**
      * Showing Blog home page
+     * @param Post $post
+     * @return $this
      */
-    public function home()
+    public function home(PostRepository $post)
     {
 //        $posts = Cache::remember('posts', 60, function () {
 //            return Post::visible()->latest()->paginate(9);
 //        });
-        $posts = Post::with('user')->latest()->simplePaginate(9);
+        $posts = $post->with(['user'])->orderBy('published_at', 'desc')->simplePaginate(9);
         return view('blog.home')->with('posts', $posts);
     }
 
