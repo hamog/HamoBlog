@@ -84,6 +84,12 @@
 
 </div><!-- /.container -->
 
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted text-center">Developer: <a href="https://github.com/hamog">Hashem Moghaddari</a></p>
+    </div>
+</footer>
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

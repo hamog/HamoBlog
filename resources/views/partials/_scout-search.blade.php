@@ -5,9 +5,9 @@
                 <input type="text" placeholder="What are you looking for?" class="form-control" v-model="query">
             </div>
             <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" @click="search()" v-if="!loading">Search!</button>
+                <button class="btn btn-default" type="button" @click="search()" v-if="!loading">Search!</button>
                 <button class="btn btn-default" type="button" disabled="disabled" v-if="loading">Searching...</button>
-                </span>
+            </span>
         </div>
     </div>
 </div>
@@ -20,7 +20,9 @@
         <div class="thumbnail">
             <img class="group list-group-image img-thumbnail" width="100" height="100" :src="post.image_path" alt="@{{ post.title }}" />
             <div class="caption">
-                <h4 class="group inner list-group-item-heading"><a href="/blog/@{{ post.slug }}">@{{ post.title }}</a></h4>
+                <h4 class="group inner list-group-item-heading">
+                    <a href="{{ url('blog') }}/@{{ post.slug }}">@{{ post.title }}</a>
+                </h4>
                 <p class="group inner list-group-item-text">@{{ post.body }}</p>
                 <hr>
                 <p>@{{ post.visit }} visits. Published At @{{ post.published_at }}</p>

@@ -177,6 +177,7 @@ return [
         Morilog\Jalali\JalaliServiceProvider::class,
         NotificationChannels\Telegram\TelegramServiceProvider::class,
         PrettyRoutes\ServiceProvider::class,
+        Rinvex\Repository\Providers\RepositoryServiceProvider::class,
 
         /*
          * Application Service Providers...
