@@ -16,7 +16,7 @@ class BlogController extends Controller
 {
     /**
      * Showing Blog home page
-     * @param Post $post
+     * @param PostRepository $post
      * @return $this
      */
     public function home(PostRepository $post)
@@ -24,7 +24,7 @@ class BlogController extends Controller
 //        $posts = Cache::remember('posts', 60, function () {
 //            return Post::visible()->latest()->paginate(9);
 //        });
-        $posts = $post->with(['user'])->orderBy('published_at', 'desc')->simplePaginate(9);
+        $posts = $post->with(['user'])->orderBy('published_at', 'des')->simplePaginate(9);
         return view('blog.home')->with('posts', $posts);
     }
 
