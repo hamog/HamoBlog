@@ -21,6 +21,10 @@
         {!! Form::label('message', 'Message', ['class' => 'control-label']) !!}
         {!! Form::textarea('message', null, ['class' => 'form-control']) !!}
     </div>
+    <div class="form-group">
+        {!! captcha_img() !!}
+        {!! Form::text('captcha', null, ['class' => 'form-control']) !!}
+    </div>
     <div class="form-group text-center">
         {!! Form::submit('Send Message', ['class' => 'btn btn-primary']) !!}
     </div>

@@ -178,6 +178,7 @@ return [
         NotificationChannels\Telegram\TelegramServiceProvider::class,
         PrettyRoutes\ServiceProvider::class,
         Rinvex\Repository\Providers\RepositoryServiceProvider::class,
+        Hamog\Captcha\CaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -244,6 +245,7 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'jDate'     => Morilog\Jalali\Facades\jDate::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Captcha'   => Hamog\Captcha\Facades\Captcha::class,
     ],
 
 ];

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dfc30ec998804689be1a84e9697ecd58",
-    "content-hash": "a4473481e932ad38f4420fc7c82c861f",
+    "hash": "b011e96212310b05a7ffcd1f8b6af744",
+    "content-hash": "75fc343d3fffbf98581b12bdf1fa0d18",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -1164,6 +1164,51 @@
                 "uri"
             ],
             "time": "2016-06-24 23:00:38"
+        },
+        {
+            "name": "hamog/captcha",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hamog/captcha.git",
+                "reference": "e8f9cb9daec3068ee627628cd6046b7f9891df7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hamog/captcha/zipball/e8f9cb9daec3068ee627628cd6046b7f9891df7d",
+                "reference": "e8f9cb9daec3068ee627628cd6046b7f9891df7d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=5.4"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Hamog\\Captcha\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Hashem Moghaddari",
+                    "email": "hashemm364@gmail.com",
+                    "homepage": "https://github.com/hamog",
+                    "role": "Web Developer"
+                }
+            ],
+            "description": "Simple Laravel 5.2 Captcha Package",
+            "homepage": "https://github.com/hamog/captcha",
+            "keywords": [
+                "captcha",
+                "laravel5 Captcha",
+                "laravel5.2"
+            ],
+            "time": "2016-08-04 08:56:55"
         },
         {
             "name": "infinety/alerts",
