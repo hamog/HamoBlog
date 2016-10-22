@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2016-10-20.
+    * Generated on 2016-10-22.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -45,6 +45,7 @@ namespace PHPSTORM_META {
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
+            'rinvex.repository.listener' instanceof \Rinvex\Repository\Listeners\RepositoryEventListener,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\LogBroadcaster,
@@ -170,6 +171,7 @@ namespace PHPSTORM_META {
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
+            'rinvex.repository.listener' instanceof \Rinvex\Repository\Listeners\RepositoryEventListener,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\LogBroadcaster,
@@ -295,6 +297,7 @@ namespace PHPSTORM_META {
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
+            'rinvex.repository.listener' instanceof \Rinvex\Repository\Listeners\RepositoryEventListener,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\LogBroadcaster,
@@ -420,6 +423,7 @@ namespace PHPSTORM_META {
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
+            'rinvex.repository.listener' instanceof \Rinvex\Repository\Listeners\RepositoryEventListener,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\LogBroadcaster,
