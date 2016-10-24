@@ -27,6 +27,8 @@ Route::patterns([
     'category'  => '[0-9]+',
     'post'      => '[0-9]+',
     'tag'       => '[0-9]+',
+    'comment'   => '[0-9]+',
+    'user'      => '[0-9]+'
 ]);
 
 //Blog pages routes
