@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UserRepository;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -71,26 +72,28 @@ class UserController extends Controller
     /**
      * Showing all users of blog.
      *
+     * @param UserRepository $userRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function allUsers()
+    public function allUsers(UserRepository $userRepository)
     {
         if (!auth()->user()->isSuperAdmin()) {
             abort(403);
         }
-        $users = User::paginate(10);
+        $users = $userRepository->paginate(10);
         return view('backend.user.lists', compact('users'));
     }
 
     /**
      * Remove user.
      *
-     * @param User $user
+     * @param integer $id
+     * @param UserRepository $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroyUser(User $user)
+    public function destroyUser($id, UserRepository $user)
     {
-        $user->delete();
+        $user->delete($id);
         alert()->success('Success', 'The user removed.');
         return back();
     }

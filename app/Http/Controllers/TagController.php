@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TagRequest;
+use App\Repositories\TagRepository;
 use App\Tag;
 
 class TagController extends Controller
@@ -10,36 +11,39 @@ class TagController extends Controller
     /**
      * Display a listing of the tag.
      *
+     * @param TagRepository $tagRepository
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TagRepository $tagRepository)
     {
-        $tags = Tag::paginate(10);
+        $tags = $tagRepository->paginate(10);
         return view('backend.tag.index', compact('tags'));
     }
 
     /**
      * Show the form for editing the specified tag.
      *
-     * @param Tag $tag
+     * @param $id
+     * @param TagRepository $tagRepository
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit($id, TagRepository $tagRepository)
     {
+        $tag = $tagRepository->find($id);
         return view('backend.tag.edit', compact('tag'));
     }
 
     /**
      * Update the specified tag in database.
      *
-     * @param TagRequest|\Illuminate\Http\Request $request
-     * @param Tag $tag
+     * @param integer $id
+     * @param TagRequest $request
+     * @param TagRepository $tagRepository
      * @return \Illuminate\Http\Response
      */
-    public function update(TagRequest $request, Tag $tag)
+    public function update($id, TagRequest $request, TagRepository $tagRepository)
     {
-        $tag->name = $request->name;
-        $tag->save();
+        $tagRepository->update($id, ['name' => $request->name]);
         alert()->success('Success', 'Tag Updated.');
         return redirect()->route('tag.index');
     }
@@ -47,12 +51,13 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Tag $tag
+     * @param integer $id
+     * @param TagRepository $tagRepository
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($id, TagRepository $tagRepository)
     {
-        $tag->delete();
+        $tagRepository->delete($id);
         alert()->success('Success', 'Tag Removed.');
         return redirect()->route('tag.index');
     }

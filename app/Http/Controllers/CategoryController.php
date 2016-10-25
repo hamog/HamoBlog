@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Http\Requests\CategoryRequest;
+use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
     /**
+     * Clear category count cache.
+     *
+     * @return void
+     */
+    private function clearCache()
+    {
+        if (cache()->has('catsCount')) {
+            cache()->forget('catsCount');
+        }
+    }
+
+    /**
      * Display a listing of the categories.
      *
+     * @param CategoryRepository $category
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CategoryRepository $category)
     {
-        $categories = Category::paginate(10);
+        $categories = $category->paginate(10);
         return view('backend.category.index', compact('categories'));
     }
 
@@ -31,12 +44,14 @@ class CategoryController extends Controller
     /**
      * Store a newly created category in database.
      *
-     * @param CategoryRequest|\Illuminate\Http\Request $request
+     * @param CategoryRequest $request
+     * @param CategoryRepository $category
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryRequest $request, CategoryRepository $category)
     {
-        Category::create($request->all());
+        $category->create($request->all());
+        $this->clearCache();
         alert()->success('Success', 'Category created.');
         return redirect()->route('category.index');
     }
@@ -44,36 +59,40 @@ class CategoryController extends Controller
     /**
      * Display the specified category.
      *
-     * @param Category $category
+     * @param integer $id
+     * @param CategoryRepository $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id, CategoryRepository $category)
     {
+        $category = $category->find($id);
         return view('backend.category.show', compact('category'));
     }
 
     /**
      * Show the form for editing the specified category.
      *
-     * @param Category $category
+     * @param integer $id
+     * @param CategoryRepository $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id, CategoryRepository $category)
     {
+        $category = $category->find($id);
         return view('backend.category.edit', compact('category'));
     }
 
     /**
      * Update the specified category in storage.
      *
-     * @param CategoryRequest|\Illuminate\Http\Request $request
-     * @param Category $category
+     * @param integer $id
+     * @param CategoryRequest $request
+     * @param CategoryRepository $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, Category $category)
+    public function update($id, CategoryRequest $request, CategoryRepository $category)
     {
-        $category->name = $request->name;
-        $category->save();
+        $category->update($id, ['name' => $request->name]);
         alert()->success('Category Updated.', "The category name='{$request->name}' successfully updated.");
         return redirect()->route('category.index');
     }
@@ -81,13 +100,15 @@ class CategoryController extends Controller
     /**
      * Remove the specified category from database.
      *
-     * @param Category $category
+     * @param integer $id
+     * @param CategoryRepository $categoryRepository
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id, CategoryRepository $categoryRepository)
     {
-        $category->delete();
-        alert()->error('Woops!', 'Category is Removed.');
+        $categoryRepository->delete($id);
+        $this->clearCache();
+        alert()->error('Woops!', "Category is Removed.");
         return back();
     }
 }

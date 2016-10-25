@@ -13,6 +13,6 @@ class PostRepository extends EloquentRepository
     {
         $this->setContainer($container)
             ->setModel(Post::class)
-            ->setRepositoryId('rinvex.repository.uniqueid');
+            ->setRepositoryId('rinvex.repository.103');
     }
 }

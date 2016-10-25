@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Comment;
-use App\Post;
-use App\Tag;
-use App\User;
-use Cache;
+use App\Repositories\CategoryRepository;
+use App\Repositories\CommentRepository;
+use App\Repositories\PostRepository;
+use App\Repositories\TagRepository;
+use App\Repositories\UserRepository;
 
 class DashboardController extends Controller
 {
@@ -47,27 +46,27 @@ class DashboardController extends Controller
     protected $commentsCount;
 
     public function __construct(
-        Category $category,
-        User $user,
-        Post $post,
-        Tag $tag,
-        Comment $comment
+        CategoryRepository $category,
+        UserRepository $user,
+        PostRepository $post,
+        TagRepository $tag,
+        CommentRepository $comment
     )
     {
-        $this->catsCount = Cache::remember('catsCount', 60*24, function () use($category) {
+        $this->catsCount = cache()->rememberForever('catsCount', function () use($category) {
             return $category->count();
         });
-        $this->usersCount = Cache::remember('usersCount', 60*24, function () use($user) {
+        $this->usersCount = cache()->rememberForever('usersCount', function () use($user) {
             return $user->count();
         });
-        $this->postsCount = Cache::remember('postsCount', 60*24, function () use($post) {
-            return $post->count();
+        $this->postsCount = cache()->rememberForever('postsCount', function () use($post) {
+            return $post->withoutGlobalScope('visible')->count();
         });
-        $this->tagsCount = Cache::remember('tagsCount', 60*24, function () use($tag) {
+        $this->tagsCount = cache()->rememberForever('postsCount', function () use($tag) {
             return $tag->count();
         });
-        $this->commentsCount = Cache::remember('commentsCount', 60*24, function () use($comment) {
-            return $comment->count();
+        $this->commentsCount = cache()->rememberForever('commentsCount', function () use($comment) {
+            return $comment->withoutGlobalScope('confirmed')->count();
         });
     }
     /**
@@ -80,7 +79,7 @@ class DashboardController extends Controller
             'usersCount'    => $this->usersCount,
             'postsCount'    => $this->postsCount,
             'tagsCount'     => $this->tagsCount,
-            'commentsCount' => $this->commentsCount,
+            'commentsCount' => $this->commentsCount
         ]);
     }
 }

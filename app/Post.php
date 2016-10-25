@@ -107,7 +107,7 @@ class Post extends Model
      */
     public static function imageUpload($image)
     {
-        return $image->storeAs('public/images', auth()->user()->id);
+        return $image->store('public/images');
     }
 
     /**

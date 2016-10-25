@@ -6,6 +6,7 @@ use App\Category;
 use App\Events\PostPublished;
 use App\Http\Requests\PostRequest;
 use App\Post;
+use App\Repositories\PostRepository;
 use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,11 +18,12 @@ class PostController extends Controller
     /**
      * Display a listing of the post.
      *
+     * @param PostRepository $postRepository
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PostRepository $postRepository)
     {
-        $posts = Post::latest()->with('category')->paginate(10);
+        $posts = $postRepository->with(['category'])->orderBy('created_at', 'desc')->paginate(10);
         return view('backend.post.index', compact('posts'));
     }
 
@@ -69,22 +71,26 @@ class PostController extends Controller
     /**
      * Display the specified post.
      *
-     * @param Post $post
+     * @param integer $id
+     * @param PostRepository $postRepository
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id, PostRepository $postRepository)
     {
+        $post = $postRepository->find($id);
         return view('backend.post.show')->with('post', $post);
     }
 
     /**
      * Show the form for editing the specified post.
      *
-     * @param Post $post
+     * @param integer $id
+     * @param PostRepository $postRepository
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id, PostRepository $postRepository)
     {
+        $post = $postRepository->find($id);
         $categories = $this->getCategories();
         $tags = $this->getTags();
         return view('backend.post.edit', compact('post', 'categories', 'tags'));
@@ -93,24 +99,28 @@ class PostController extends Controller
     /**
      * Update the specified post in database.
      *
+     * @param integer $id
      * @param PostRequest $request
-     * @param Post $post
+     * @param PostRepository $postRepository
      * @param Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, Post $post, Tag $tag)
+    public function update($id, PostRequest $request, PostRepository $postRepository, Tag $tag)
     {
+        $post = $postRepository->find($id);
         $this->authorize('update', $post);
-        $post->title = $request->title;
-        $post->category_id = $request->category;
-        $post->user_id = $request->user()->id;
-        $post->body = $request->body;
+        $data = [
+            'title'         => $request->title,
+            'category_id'   => $request->category,
+            'user_id'       => $request->user()->id,
+            'body'          => $request->body,
+        ];
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $path = Post::imageUpload($request->file('image'));
-            Storage::delete($this->getImagePath($post->image_path));
-            $post->image_path = $path;
+            Storage::delete($post->image_path);
+            $data = array_add($data, 'image_path', $path);
         }
-        $post->save();
+        $postRepository->update($id, $data);
 
         $tags = $tag->storeNewTags($request->tags);
         $post->tags()->sync($tags);
@@ -121,17 +131,19 @@ class PostController extends Controller
     /**
      * Remove the specified post from database.
      *
-     * @param \App\Post $post
+     * @param integer $id
+     * @param PostRepository $postRepository
      * @param Storage $storage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post, Storage $storage)
+    public function destroy($id, PostRepository $postRepository, Storage $storage)
     {
+        $post = $postRepository->find($id);
         if ($storage->exists($post->image_path)) {
             $storage->delete($post->image_path);
         }
-        $post->delete();
-        //alert()->success('Success', 'Post Removed.');
+        $postRepository->delete($id);
+        alert()->success('Success', 'Post Removed.');
         return back();
     }
 
@@ -184,5 +196,4 @@ class PostController extends Controller
         $post->save();
         return response()->json($data);
     }
-
 }

@@ -17,19 +17,18 @@ class BlogController extends Controller
     /**
      * Showing Blog home page
      * @param PostRepository $post
-     * @return $this
+     * @return  \View
      */
     public function home(PostRepository $post)
     {
-//        $posts = Cache::remember('posts', 60, function () {
-//            return Post::visible()->latest()->paginate(9);
-//        });
         $posts = $post->with(['user'])->orderBy('published_at', 'des')->simplePaginate(9);
         return view('blog.home')->with('posts', $posts);
     }
 
     /**
-     * Showing Blog about-me page
+     * Showing Blog about-me page.
+     *
+     * @return \View
      */
     public function about()
     {
@@ -37,7 +36,9 @@ class BlogController extends Controller
     }
 
     /**
-     * Showing Blog contact-me page
+     * Showing Blog contact-me page.
+     *
+     * @return \View
      */
     public function contact()
     {
@@ -48,7 +49,7 @@ class BlogController extends Controller
      * Get contact message and send email
      *
      * @param ContactRequest|Request $request
-     * @return string
+     * @return \Redirect
      */
     public function sendContact(ContactRequest $request)
     {
@@ -68,12 +69,13 @@ class BlogController extends Controller
      * Showing blog post.
      *
      * @param string $slug
+     * @param PostRepository $post
      * @param Cookie $cookie
-     * @return response view
+     * @return \View
      */
-    public function showPost($slug, Cookie $cookie)
+    public function showPost($slug, PostRepository $post, Cookie $cookie)
     {
-        $post = Post::slug($slug)->first();
+        $post = $post->slug($slug)->first();
         if (!$cookie->hasQueued('show_post')) {
             $post->increment('visit');
             $cookie->queue('show_post', true, 10);
@@ -81,6 +83,12 @@ class BlogController extends Controller
         return view('blog.post')->with('post', $post);
     }
 
+    /**
+     * Search posts with laravel scout.
+     *
+     * @param Request $request
+     * @return array|\Illuminate\Database\Eloquent\Collection
+     */
     public function search(Request $request)
     {
         // First we define the error message we are going to show if no keywords
