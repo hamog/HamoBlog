@@ -32,7 +32,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'body', 'image_path',
+        'title', 'body', 'image_path', 'category_id', 'user_id'
     ];
 
     /**
@@ -107,7 +107,7 @@ class Post extends Model
      */
     public static function imageUpload($image)
     {
-        return $image->store('public/images');
+        return $image->store('images', 'public');
     }
 
     /**
