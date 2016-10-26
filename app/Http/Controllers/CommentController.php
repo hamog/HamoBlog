@@ -6,6 +6,7 @@ use App\Comment;
 use App\Http\Requests\CommentRequest;
 use App\Post;
 use App\Repositories\CommentRepository;
+use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -25,12 +26,12 @@ class CommentController extends Controller
     /**
      * Display a listing of the comment.
      *
-     * @param Comment $comment
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param CommentRepository $commentRepository
+     * @return \Illuminate\View\View
      */
-    public function index(Comment $comment)
+    public function index(CommentRepository $commentRepository)
     {
-        $comments = $comment->withoutGlobalScope('confirmed')->with(['post'])->paginate(10);
+        $comments = $commentRepository->withoutGlobalScope('confirmed')->with(['post'])->paginate(10);
         return view('backend.comment.index', compact('comments'));
     }
     /**
@@ -98,5 +99,21 @@ class CommentController extends Controller
         $this->clearCache();
         alert()->success('Comment Removed', 'The comment is permanently removed.');
         return redirect()->route('comment.index');
+    }
+
+    /**
+     * Store reply for a comment.
+     *
+     * @param integer $id
+     * @param Request $request
+     * @param PostRepository $postRepository
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function storeAjaxReply($id, Request $request, PostRepository $postRepository)
+    {
+        abort_unless($request->ajax(), 404);
+        $this->validate($request, ['reply' => 'max:255']);
+        $post = $postRepository->update($id, ['reply' => $request->reply]);
+        return response()->json(['reply' => $post->reply]);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.19 on 2016-10-22.
+ * Generated for Laravel 5.3.21 on 2016-10-26.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -3149,7 +3149,6 @@ namespace {
          *
          * @param \PDO|null $pdo
          * @return $this 
-         * @throws \RuntimeException
          * @static 
          */
         public static function setPdo($pdo){
@@ -6963,7 +6962,7 @@ namespace {
          * @static 
          */
         public static function size($queue = null){
-            return \Illuminate\Queue\RedisQueue::size($queue);
+            return \Illuminate\Queue\SyncQueue::size($queue);
         }
         
         /**
@@ -6973,10 +6972,11 @@ namespace {
          * @param mixed $data
          * @param string $queue
          * @return mixed 
+         * @throws \Exception|\Throwable
          * @static 
          */
         public static function push($job, $data = '', $queue = null){
-            return \Illuminate\Queue\RedisQueue::push($job, $data, $queue);
+            return \Illuminate\Queue\SyncQueue::push($job, $data, $queue);
         }
         
         /**
@@ -6989,7 +6989,7 @@ namespace {
          * @static 
          */
         public static function pushRaw($payload, $queue = null, $options = array()){
-            return \Illuminate\Queue\RedisQueue::pushRaw($payload, $queue, $options);
+            return \Illuminate\Queue\SyncQueue::pushRaw($payload, $queue, $options);
         }
         
         /**
@@ -7003,7 +7003,7 @@ namespace {
          * @static 
          */
         public static function later($delay, $job, $data = '', $queue = null){
-            return \Illuminate\Queue\RedisQueue::later($delay, $job, $data, $queue);
+            return \Illuminate\Queue\SyncQueue::later($delay, $job, $data, $queue);
         }
         
         /**
@@ -7014,54 +7014,7 @@ namespace {
          * @static 
          */
         public static function pop($queue = null){
-            return \Illuminate\Queue\RedisQueue::pop($queue);
-        }
-        
-        /**
-         * Delete a reserved job from the queue.
-         *
-         * @param string $queue
-         * @param string $job
-         * @return void 
-         * @static 
-         */
-        public static function deleteReserved($queue, $job){
-            \Illuminate\Queue\RedisQueue::deleteReserved($queue, $job);
-        }
-        
-        /**
-         * Delete a reserved job from the reserved queue and release it.
-         *
-         * @param string $queue
-         * @param string $job
-         * @param int $delay
-         * @return void 
-         * @static 
-         */
-        public static function deleteAndRelease($queue, $job, $delay){
-            \Illuminate\Queue\RedisQueue::deleteAndRelease($queue, $job, $delay);
-        }
-        
-        /**
-         * Migrate the delayed jobs that are ready to the regular queue.
-         *
-         * @param string $from
-         * @param string $to
-         * @return void 
-         * @static 
-         */
-        public static function migrateExpiredJobs($from, $to){
-            \Illuminate\Queue\RedisQueue::migrateExpiredJobs($from, $to);
-        }
-        
-        /**
-         * Get the underlying Redis instance.
-         *
-         * @return \Illuminate\Redis\Database 
-         * @static 
-         */
-        public static function getRedis(){
-            return \Illuminate\Queue\RedisQueue::getRedis();
+            return \Illuminate\Queue\SyncQueue::pop($queue);
         }
         
         /**
@@ -7075,7 +7028,7 @@ namespace {
          */
         public static function pushOn($queue, $job, $data = ''){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\RedisQueue::pushOn($queue, $job, $data);
+            return \Illuminate\Queue\SyncQueue::pushOn($queue, $job, $data);
         }
         
         /**
@@ -7090,7 +7043,7 @@ namespace {
          */
         public static function laterOn($queue, $delay, $job, $data = ''){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\RedisQueue::laterOn($queue, $delay, $job, $data);
+            return \Illuminate\Queue\SyncQueue::laterOn($queue, $delay, $job, $data);
         }
         
         /**
@@ -7104,7 +7057,7 @@ namespace {
          */
         public static function bulk($jobs, $data = '', $queue = null){
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\RedisQueue::bulk($jobs, $data, $queue);
+            return \Illuminate\Queue\SyncQueue::bulk($jobs, $data, $queue);
         }
         
         /**
@@ -7116,7 +7069,7 @@ namespace {
          */
         public static function setContainer($container){
             //Method inherited from \Illuminate\Queue\Queue            
-            \Illuminate\Queue\RedisQueue::setContainer($container);
+            \Illuminate\Queue\SyncQueue::setContainer($container);
         }
         
     }
@@ -10262,6 +10215,18 @@ namespace {
         }
         
         /**
+         * Get an item from the session, or store the default value.
+         *
+         * @param string $key
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function remember($key, $callback){
+            return \Illuminate\Session\Store::remember($key, $callback);
+        }
+        
+        /**
          * Push a value onto a session array.
          *
          * @param string $key
@@ -10310,8 +10275,7 @@ namespace {
         }
         
         /**
-         * Flash a key / value pair to the session
-         * for immediate use.
+         * Flash a key / value pair to the session for immediate use.
          *
          * @param string $key
          * @param mixed $value
@@ -13467,6 +13431,51 @@ namespace {
         public static function getDrivers(){
             //Method inherited from \Illuminate\Support\Manager            
             return \Laravel\Socialite\SocialiteManager::getDrivers();
+        }
+        
+    }
+
+
+    class Captcha extends \Hamog\Captcha\Facades\Captcha{
+        
+        /**
+         * Create captcha image
+         *
+         * @static 
+         */
+        public static function create(){
+            return \Hamog\Captcha\Captcha::create();
+        }
+        
+        /**
+         * Generate captcha image html tag
+         *
+         * @return string img HTML Tag
+         * @static 
+         */
+        public static function img(){
+            return \Hamog\Captcha\Captcha::img();
+        }
+        
+        /**
+         * Check user input captcha code
+         *
+         * @param string $input
+         * @return bool 
+         * @static 
+         */
+        public static function check($input){
+            return \Hamog\Captcha\Captcha::check($input);
+        }
+        
+        /**
+         * Generate captcha image source
+         *
+         * @return string 
+         * @static 
+         */
+        public static function src(){
+            return \Hamog\Captcha\Captcha::src();
         }
         
     }

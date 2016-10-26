@@ -41,6 +41,10 @@ class Tag extends Model
                 continue;
             //store new tag
             $newTag = $this->firstOrCreate(['name' => $tag]);
+            //clear tags count cache
+            if (cache()->has('tagsCount'))
+                cache()->forget('tagsCount');
+            //add new tags id to tags array and unset string tag names
             $tags[] = $newTag->id;
             unset($tags[$key]);
         }

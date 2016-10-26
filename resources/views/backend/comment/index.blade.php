@@ -28,11 +28,14 @@
                                     <td>
                                         <input type="checkbox" id="comment-confirmation" @if($comment->confirmed) checked @endif>
                                     </td>
-                                    <td>{{ $comment->reply }}</td>
+                                    <td id="reply">
+                                        @if($comment->reply)
+                                            {{ $comment->reply }}
+                                        @else
+                                            <input type="text" class="reply-comment" data-url="{{ route('comment.ajax.reply', [$comment->id]) }}">
+                                        @endif
+                                    </td>
                                     <td>
-                                        <a href="{{ route('post.show', [$comment->post->id]) }}" class="btn btn-info">
-                                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                        </a>
                                         {!! Form::open([
                                                 'route' => ['comment.destroy', $comment->id],
                                                 'method' => 'delete',
@@ -52,4 +55,33 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        (function () {
+            $(".reply-comment").change(function () {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'PATCH',
+                    data: {
+                        reply: $(this).val()
+                    },
+                    success: function (res) {
+                        console.log(res.reply);
+                    },
+                    error: function (err) {
+                        var errors = err.responseJSON;
+                        console.log(errors);
+                    }
+                });
+            });
+        })();
+    </script>
 @endsection

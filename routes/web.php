@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Comment backend routes
     Route::get('/comment', 'CommentController@index')->name('comment.index');
     Route::delete('/comment/{comment}/destroy', 'CommentController@destroy')->name('comment.destroy');
+    Route::patch('/comment/{comment}/ajax/reply', 'CommentController@storeAjaxReply')->name('comment.ajax.reply');
 });
 
 
