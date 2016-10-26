@@ -79,6 +79,12 @@
         {!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
     </div>
 
+    <div class="form-group">
+        {!! Form::label('captcha', 'Security Code', ['class' => 'control-label']) !!}
+        {!! captcha_img() !!}
+        {!! Form::text('captcha', null, ['class' => 'form-control']) !!}
+    </div>
+
     <button type="submit" class="btn btn-primary">Send</button>
     {!! Form::close() !!}
 @endsection

@@ -13,10 +13,7 @@ class CommentRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->isMethod('post')) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     /**
@@ -30,6 +27,7 @@ class CommentRequest extends FormRequest
             'name'      => 'required|min:3|max:100',
             'email'     => 'email|max:255',
             'comment'   => 'required|max:1000',
+            'captcha'   => 'required|captcha',
         ];
     }
 }
