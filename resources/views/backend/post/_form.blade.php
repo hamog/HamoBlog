@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('body', 'Body', ['class' => 'control-label']) !!}
-    {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('body', null, ['class' => 'form-control', 'id' => 'post-body']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('image', 'Select Image', ['class' => 'control-label']) !!}

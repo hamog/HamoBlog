@@ -26,13 +26,13 @@
                                     <td>{{ $comment->email }}</td>
                                     <td>{{ $comment->comment }}</td>
                                     <td>
-                                        <input type="checkbox" id="comment-confirmation" @if($comment->confirmed) checked @endif>
+                                        <input type="checkbox" class="comment-confirmation" data-id="{{ $comment->id }}" @if($comment->confirmed) checked @endif>
                                     </td>
-                                    <td id="reply">
+                                    <td>
                                         @if($comment->reply)
                                             {{ $comment->reply }}
                                         @else
-                                            <input type="text" class="reply-comment" data-url="{{ route('comment.ajax.reply', [$comment->id]) }}">
+                                            <input type="text" class="reply-comment" v-model="reply">
                                         @endif
                                     </td>
                                     <td>
@@ -61,20 +61,21 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         (function () {
-            $(".reply-comment").change(function () {
+            $(".comment-confirmation").change(function () {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url: $(this).data('url'),
+                    url: '{{ route('comment.confirm') }}',
                     method: 'PATCH',
+                    dataType: 'json',
                     data: {
-                        reply: $(this).val()
+                        comment_id: $(this).data('id')
                     },
                     success: function (res) {
-                        console.log(res.reply);
+                        console.log(res.message);
                     },
                     error: function (err) {
                         var errors = err.responseJSON;

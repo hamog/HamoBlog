@@ -23,7 +23,8 @@
         "algolia/algoliasearch-client-php": "^1.10",
         "infinety/alerts": "*@dev",
         "rinvex/repository": "2.0.*",
-        "hamog/captcha": "^1.0"
+        "hamog/captcha": "^1.0",
+        "mews/purifier": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

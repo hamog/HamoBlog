@@ -59,9 +59,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/comment', 'CommentController@index')->name('comment.index');
     Route::delete('/comment/{comment}/destroy', 'CommentController@destroy')->name('comment.destroy');
     Route::patch('/comment/{comment}/ajax/reply', 'CommentController@storeAjaxReply')->name('comment.ajax.reply');
+    Route::patch('/comment/confirm', 'CommentController@confirm')->name('comment.confirm')->middleware('ajax');
 });
-
-
-
-
-

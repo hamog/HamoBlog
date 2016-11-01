@@ -100,6 +100,7 @@
 <script src="{{ asset('js/main.js') }}"> </script>
 <script src="{{ asset('js/select2.min.js') }}"> </script>
 <script src="{{ asset('js/sweetalert.min.js') }}"> </script>
+<script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
 @include('vendor.alerts.alerts')
 @yield('js')
 </body>

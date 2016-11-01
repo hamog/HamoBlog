@@ -170,15 +170,16 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
+        Hamog\Captcha\CaptchaServiceProvider::class,
         Infinety\Alerts\AlertServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
         Morilog\Jalali\JalaliServiceProvider::class,
         NotificationChannels\Telegram\TelegramServiceProvider::class,
         PrettyRoutes\ServiceProvider::class,
         Rinvex\Repository\Providers\RepositoryServiceProvider::class,
-        Hamog\Captcha\CaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -239,13 +240,14 @@ return [
         /*
          * Package aliases...
          */
+        'Captcha'   => Hamog\Captcha\Facades\Captcha::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
         'jDate'     => Morilog\Jalali\Facades\jDate::class,
+        'Purifier'  => Mews\Purifier\Facades\Purifier::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Captcha'   => Hamog\Captcha\Facades\Captcha::class,
     ],
 
 ];

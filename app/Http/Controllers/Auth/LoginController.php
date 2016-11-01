@@ -70,4 +70,18 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+    /**
+     * Validate login credentials.
+     *
+     * @param Request $request
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username()   => 'required|min:3|max:60',
+            'password'          => 'required|min:6|max:17'
+        ]);
+    }
+
+
 }

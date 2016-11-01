@@ -78,10 +78,22 @@ class CommentController extends Controller
      * Confirmation of comments.
      *
      * @param Request $request
+     * @param CommentRepository $commentRepository
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function confirm(Request $request)
+    public function confirm(Request $request, CommentRepository $commentRepository)
     {
-        //
+        $id = intval($request->comment_id);
+        $comment = Comment::find($id);
+        if($comment->confirmed) {
+            $confirm = 0;
+            $message = 'The comment is hidden.';
+        } else {
+            $confirm = 1;
+            $message = 'The comment is confirmed.';
+        }
+        $commentRepository->update($id, ['confirmed' => $confirm]);
+        return response()->json(['message' => $message]);
     }
 
     /**

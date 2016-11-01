@@ -17,5 +17,8 @@
         $("#tags").select2({
             tags: true
         });
+        CKEDITOR.replace('post-body', {
+            uiColor: '#9AB8F3'
+        });
     </script>
 @endsection

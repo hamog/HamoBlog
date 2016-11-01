@@ -55,7 +55,7 @@ class PostController extends Controller
         $post->category_id = $request->category;
         $post->user_id = $request->user()->id;
         $post->title = $request->title;
-        $post->body = $request->body;
+        $post->body = clean($request->body);
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $path = Post::imageUpload($request->file('image'));
             $post->image_path = $path;
