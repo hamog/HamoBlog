@@ -24,7 +24,8 @@
         "infinety/alerts": "*@dev",
         "rinvex/repository": "2.0.*",
         "hamog/captcha": "^1.0",
-        "mews/purifier": "^2.0"
+        "mews/purifier": "^2.0",
+        "laravel/passport": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.21 on 2016-11-01.
+ * Generated for Laravel 5.3.21 on 2016-11-02.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11821,6 +11821,51 @@ namespace {
     }
 
 
+    class Captcha extends \Hamog\Captcha\Facades\Captcha{
+        
+        /**
+         * Create captcha image
+         *
+         * @static 
+         */
+        public static function create(){
+            return \Hamog\Captcha\Captcha::create();
+        }
+        
+        /**
+         * Generate captcha image html tag
+         *
+         * @return string img HTML Tag
+         * @static 
+         */
+        public static function img(){
+            return \Hamog\Captcha\Captcha::img();
+        }
+        
+        /**
+         * Check user input captcha code
+         *
+         * @param string $input
+         * @return bool 
+         * @static 
+         */
+        public static function check($input){
+            return \Hamog\Captcha\Captcha::check($input);
+        }
+        
+        /**
+         * Generate captcha image source
+         *
+         * @return string 
+         * @static 
+         */
+        public static function src(){
+            return \Hamog\Captcha\Captcha::src();
+        }
+        
+    }
+
+
     class Debugbar extends \Barryvdh\Debugbar\Facade{
         
         /**
@@ -13350,6 +13395,33 @@ namespace {
     }
 
 
+    class Purifier extends \Mews\Purifier\Facades\Purifier{
+        
+        /**
+         * 
+         *
+         * @param $dirty
+         * @param null $config
+         * @return mixed 
+         * @static 
+         */
+        public static function clean($dirty, $config = null){
+            return \Mews\Purifier\Purifier::clean($dirty, $config);
+        }
+        
+        /**
+         * Get HTMLPurifier instance.
+         *
+         * @return \HTMLPurifier 
+         * @static 
+         */
+        public static function getInstance(){
+            return \Mews\Purifier\Purifier::getInstance();
+        }
+        
+    }
+
+
     class Socialite extends \Laravel\Socialite\Facades\Socialite{
         
         /**
@@ -13431,51 +13503,6 @@ namespace {
         public static function getDrivers(){
             //Method inherited from \Illuminate\Support\Manager            
             return \Laravel\Socialite\SocialiteManager::getDrivers();
-        }
-        
-    }
-
-
-    class Captcha extends \Hamog\Captcha\Facades\Captcha{
-        
-        /**
-         * Create captcha image
-         *
-         * @static 
-         */
-        public static function create(){
-            return \Hamog\Captcha\Captcha::create();
-        }
-        
-        /**
-         * Generate captcha image html tag
-         *
-         * @return string img HTML Tag
-         * @static 
-         */
-        public static function img(){
-            return \Hamog\Captcha\Captcha::img();
-        }
-        
-        /**
-         * Check user input captcha code
-         *
-         * @param string $input
-         * @return bool 
-         * @static 
-         */
-        public static function check($input){
-            return \Hamog\Captcha\Captcha::check($input);
-        }
-        
-        /**
-         * Generate captcha image source
-         *
-         * @return string 
-         * @static 
-         */
-        public static function src(){
-            return \Hamog\Captcha\Captcha::src();
         }
         
     }

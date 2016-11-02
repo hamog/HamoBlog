@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2016-11-01.
+    * Generated on 2016-11-02.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -15,6 +15,8 @@ namespace PHPSTORM_META {
             'router' instanceof \Illuminate\Routing\Router,
             'url' instanceof \Illuminate\Routing\UrlGenerator,
             'redirect' instanceof \Illuminate\Routing\Redirector,
+            'Psr\Http\Message\ServerRequestInterface' instanceof \Zend\Diactoros\ServerRequest,
+            'Psr\Http\Message\ResponseInterface' instanceof \Zend\Diactoros\Response,
             'Illuminate\Contracts\Routing\ResponseFactory' instanceof \Illuminate\Routing\ResponseFactory,
             'Illuminate\Contracts\Http\Kernel' instanceof \App\Http\Kernel,
             'Illuminate\Contracts\Console\Kernel' instanceof \App\Console\Kernel,
@@ -41,12 +43,12 @@ namespace PHPSTORM_META {
             'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
+            'captcha' instanceof \Hamog\Captcha\Captcha,
             'image' instanceof \Intervention\Image\ImageManager,
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
             'rinvex.repository.listener' instanceof \Rinvex\Repository\Listeners\RepositoryEventListener,
-            'captcha' instanceof \Hamog\Captcha\Captcha,
             'Foo' instanceof \App\Services\FooService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
@@ -136,6 +138,7 @@ namespace PHPSTORM_META {
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
             'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
+            'purifier' instanceof \Mews\Purifier\Purifier,
         ],
         \Illuminate\Contracts\Container\Container::make('') => [
             '' == '@',
@@ -143,6 +146,8 @@ namespace PHPSTORM_META {
             'router' instanceof \Illuminate\Routing\Router,
             'url' instanceof \Illuminate\Routing\UrlGenerator,
             'redirect' instanceof \Illuminate\Routing\Redirector,
+            'Psr\Http\Message\ServerRequestInterface' instanceof \Zend\Diactoros\ServerRequest,
+            'Psr\Http\Message\ResponseInterface' instanceof \Zend\Diactoros\Response,
             'Illuminate\Contracts\Routing\ResponseFactory' instanceof \Illuminate\Routing\ResponseFactory,
             'Illuminate\Contracts\Http\Kernel' instanceof \App\Http\Kernel,
             'Illuminate\Contracts\Console\Kernel' instanceof \App\Console\Kernel,
@@ -169,12 +174,12 @@ namespace PHPSTORM_META {
             'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
+            'captcha' instanceof \Hamog\Captcha\Captcha,
             'image' instanceof \Intervention\Image\ImageManager,
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
             'rinvex.repository.listener' instanceof \Rinvex\Repository\Listeners\RepositoryEventListener,
-            'captcha' instanceof \Hamog\Captcha\Captcha,
             'Foo' instanceof \App\Services\FooService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
@@ -264,6 +269,7 @@ namespace PHPSTORM_META {
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
             'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
+            'purifier' instanceof \Mews\Purifier\Purifier,
         ],
         \App::make('') => [
             '' == '@',
@@ -271,6 +277,8 @@ namespace PHPSTORM_META {
             'router' instanceof \Illuminate\Routing\Router,
             'url' instanceof \Illuminate\Routing\UrlGenerator,
             'redirect' instanceof \Illuminate\Routing\Redirector,
+            'Psr\Http\Message\ServerRequestInterface' instanceof \Zend\Diactoros\ServerRequest,
+            'Psr\Http\Message\ResponseInterface' instanceof \Zend\Diactoros\Response,
             'Illuminate\Contracts\Routing\ResponseFactory' instanceof \Illuminate\Routing\ResponseFactory,
             'Illuminate\Contracts\Http\Kernel' instanceof \App\Http\Kernel,
             'Illuminate\Contracts\Console\Kernel' instanceof \App\Console\Kernel,
@@ -297,12 +305,12 @@ namespace PHPSTORM_META {
             'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
+            'captcha' instanceof \Hamog\Captcha\Captcha,
             'image' instanceof \Intervention\Image\ImageManager,
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
             'rinvex.repository.listener' instanceof \Rinvex\Repository\Listeners\RepositoryEventListener,
-            'captcha' instanceof \Hamog\Captcha\Captcha,
             'Foo' instanceof \App\Services\FooService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
@@ -392,6 +400,7 @@ namespace PHPSTORM_META {
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
             'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
+            'purifier' instanceof \Mews\Purifier\Purifier,
         ],
         \app('') => [
             '' == '@',
@@ -399,6 +408,8 @@ namespace PHPSTORM_META {
             'router' instanceof \Illuminate\Routing\Router,
             'url' instanceof \Illuminate\Routing\UrlGenerator,
             'redirect' instanceof \Illuminate\Routing\Redirector,
+            'Psr\Http\Message\ServerRequestInterface' instanceof \Zend\Diactoros\ServerRequest,
+            'Psr\Http\Message\ResponseInterface' instanceof \Zend\Diactoros\Response,
             'Illuminate\Contracts\Routing\ResponseFactory' instanceof \Illuminate\Routing\ResponseFactory,
             'Illuminate\Contracts\Http\Kernel' instanceof \App\Http\Kernel,
             'Illuminate\Contracts\Console\Kernel' instanceof \App\Console\Kernel,
@@ -425,12 +436,12 @@ namespace PHPSTORM_META {
             'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
+            'captcha' instanceof \Hamog\Captcha\Captcha,
             'image' instanceof \Intervention\Image\ImageManager,
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
             'rinvex.repository.listener' instanceof \Rinvex\Repository\Listeners\RepositoryEventListener,
-            'captcha' instanceof \Hamog\Captcha\Captcha,
             'Foo' instanceof \App\Services\FooService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
@@ -520,6 +531,7 @@ namespace PHPSTORM_META {
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
             'Laravel\Socialite\Contracts\Factory' instanceof \Laravel\Socialite\SocialiteManager,
+            'purifier' instanceof \Mews\Purifier\Purifier,
         ],
     ];
 }
