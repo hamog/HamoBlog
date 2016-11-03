@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2016-11-02.
+    * Generated on 2016-11-03.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -45,6 +45,8 @@ namespace PHPSTORM_META {
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
             'captcha' instanceof \Hamog\Captcha\Captcha,
             'image' instanceof \Intervention\Image\ImageManager,
+            'League\OAuth2\Server\AuthorizationServer' instanceof \League\OAuth2\Server\AuthorizationServer,
+            'League\OAuth2\Server\ResourceServer' instanceof \League\OAuth2\Server\ResourceServer,
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
@@ -176,6 +178,8 @@ namespace PHPSTORM_META {
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
             'captcha' instanceof \Hamog\Captcha\Captcha,
             'image' instanceof \Intervention\Image\ImageManager,
+            'League\OAuth2\Server\AuthorizationServer' instanceof \League\OAuth2\Server\AuthorizationServer,
+            'League\OAuth2\Server\ResourceServer' instanceof \League\OAuth2\Server\ResourceServer,
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
@@ -307,6 +311,8 @@ namespace PHPSTORM_META {
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
             'captcha' instanceof \Hamog\Captcha\Captcha,
             'image' instanceof \Intervention\Image\ImageManager,
+            'League\OAuth2\Server\AuthorizationServer' instanceof \League\OAuth2\Server\AuthorizationServer,
+            'League\OAuth2\Server\ResourceServer' instanceof \League\OAuth2\Server\ResourceServer,
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
@@ -438,6 +444,8 @@ namespace PHPSTORM_META {
             'Cviebrock\EloquentSluggable\SluggableObserver' instanceof \Cviebrock\EloquentSluggable\SluggableObserver,
             'captcha' instanceof \Hamog\Captcha\Captcha,
             'image' instanceof \Intervention\Image\ImageManager,
+            'League\OAuth2\Server\AuthorizationServer' instanceof \League\OAuth2\Server\AuthorizationServer,
+            'League\OAuth2\Server\ResourceServer' instanceof \League\OAuth2\Server\ResourceServer,
             'Laravel\Scout\EngineManager' instanceof \Laravel\Scout\EngineManager,
             'jalali' instanceof \Morilog\Jalali\jDate,
             'jDateTime' instanceof \Morilog\Jalali\jDateTime,
