@@ -51,9 +51,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'bail|required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name'      => 'required|max:255',
+            'email'     => 'bail|required|email|max:255|unique:users',
+            'password'  => 'required|min:6|confirmed',
+            'avatar'    => 'required|image|max:1024',
         ]);
     }
 
@@ -65,12 +66,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $path = $this->avatarUpload($data['avatar']);
         return User::create([
             'name'               => $data['name'],
             'email'              => $data['email'],
             'password'           => bcrypt($data['password']),
             'verification_token' => str_random(30),
+            'avatar'             => $path,
         ]);
+    }
+
+    /**
+     * Upload user avatar.
+     *
+     * @param resource $avatar
+     * @return string path
+     */
+    protected function avatarUpload($avatar)
+    {
+        return $avatar->store('avatars', 'public');
     }
 
     /**
