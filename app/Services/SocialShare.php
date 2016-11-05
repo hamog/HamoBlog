@@ -34,12 +34,23 @@ class SocialShare
 
     public function make($social)
     {
-        $url = $this->links[$social];
+        $url = $this->makeUrl($social);
         $html = <<<BUTTON
         <a class="btn btn-social-icon btn-$social" target="_blank" href="$url">
             <span class="fa fa-$social"></span>
         </a>
 BUTTON;
         return $html;
+    }
+
+    /**
+     * Make social network url.
+     *
+     * @param $social
+     * @return string
+     */
+    private function makeUrl($social)
+    {
+        return $this->links[$social];
     }
 }
