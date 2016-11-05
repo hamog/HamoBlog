@@ -17,7 +17,14 @@
             No Tags.
         @endforelse
     </div>
-
+    <div>
+        Share with:
+        @inject('social', 'App\Services\SocialShare')
+        {!! $social->make('twitter') !!}
+        {!! $social->make('facebook') !!}
+        {!! $social->make('telegram') !!}
+        {!! $social->make('google') !!}
+    </div>
     <div class="comments">
         <em>Comments:</em>
         @forelse($post->comments as $comment)

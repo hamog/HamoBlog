@@ -11,6 +11,12 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.css') }}">
+
+    {{-- BootsStrap Social --}}
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap-social/bootstrap-social.css') }}">
+
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 

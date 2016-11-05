@@ -64,17 +64,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
-        $path = $this->avatarUpload($data['avatar']);
-        return User::create([
-            'name'               => $data['name'],
-            'email'              => $data['email'],
-            'password'           => bcrypt($data['password']),
-            'verification_token' => str_random(30),
-            'avatar'             => $path,
-        ]);
-    }
+protected function create(array $data)
+{
+    $path = $this->avatarUpload($data['avatar']);
+    return User::create([
+        'name'               => $data['name'],
+        'email'              => $data['email'],
+        'password'           => bcrypt($data['password']),
+        'verification_token' => str_random(30),
+        'avatar'             => $path,
+    ]);
+}
 
     /**
      * Upload user avatar.
