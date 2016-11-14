@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\MailResetPasswordToken;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
@@ -60,10 +61,21 @@ class User extends Authenticatable
         return $this->is_admin;
     }
 
+    /**
+     * Verification user after registration.
+     */
     public function verified()
     {
         $this->verified = 1;
         $this->verification_token = null;
         $this->save();
+    }
+
+    /**
+     * Send a password reset email to the user
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new MailResetPasswordToken($token));
     }
 }

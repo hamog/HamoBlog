@@ -61,3 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/comment/{comment}/ajax/reply', 'CommentController@storeAjaxReply')->name('comment.ajax.reply');
     Route::patch('/comment/confirm', 'CommentController@confirm')->name('comment.confirm')->middleware('ajax');
 });
+
+Route::get('home', function() {
+    return view('home');
+});
