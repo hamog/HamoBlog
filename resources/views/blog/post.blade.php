@@ -10,13 +10,13 @@
     <p>{{ $post->body }}</p>
     <p>Created By <strong>{{ $post->user->name }}</strong> On {{ $post->created_at->format('d F Y') }}</p>
     <div class="tags">
-        <em>Tags:</em>
-        @forelse($post->tags as $tag)
-            {{ $tag->name }}{{ ($loop->remaining) ? ',' : '' }}
-        @empty
-            No Tags.
-        @endforelse
+        <ul class="nav nav-pills">
+            @foreach($post->tags as $tag)
+                <li class="active"><a href="#">{{ $tag->name }}</a></li>
+            @endforeach
+        </ul>
     </div>
+    <p></p>
     <div>
         Share with:
         @inject('social', 'App\Services\SocialShare')
