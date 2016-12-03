@@ -21,5 +21,3 @@
         {!! $posts->links() !!}
     </div>
 @endsection
-
-@stack('vue-scripts')
