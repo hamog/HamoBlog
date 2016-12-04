@@ -100,6 +100,9 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{ asset('js/jquery-3.1.0.min.js') }}"> </script>
+<script>
+    window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+</script>
 <script src="{{ asset('js/app.js') }}"> </script>
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"> </script>--}}
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.1/vue-resource.min.js"> </script>--}}

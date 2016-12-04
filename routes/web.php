@@ -65,3 +65,4 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('home', function() {
     return view('home');
 });
+

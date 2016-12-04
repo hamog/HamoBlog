@@ -2,7 +2,7 @@
     <div class="form-group">
         <div class="input-group input-group-md">
             <div class="icon-addon addon-md">
-                <input type="text" placeholder="What are you looking for?" @keyup="search()" class="form-control" v-model="query">
+                <input type="text" placeholder="What are you looking for?" class="form-control" v-model="query">
             </div>
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" @click="search()" v-if="!loading">Search!</button>

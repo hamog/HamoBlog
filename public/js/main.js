@@ -20,13 +20,18 @@ new Vue({
 
             // Making a get request to our API and passing the query to it.
             this.$http.get('/search?q=' + this.query).then((response) => {
+                // success callback
+                var res = JSON.parse(response.body);
                 // If there was an error set the error message, if not fill the posts array.
-                response.body.error ? this.error = response.body.error : this.posts = response.body;
-            // The request is finished, change the loading to false again.
-            this.loading = false;
-            // Clear the query.
-            //this.query = '';
-        });
+                (res.error) ? (this.error = res.error) : (this.posts = res);
+                // The request is finished, change the loading to false again.
+                this.loading = false;
+                // Clear the query.
+                this.query = '';
+            }, (response) => {
+                // error callback
+                console.log(response);
+            });
         }
     }
 
